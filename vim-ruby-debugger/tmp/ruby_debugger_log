@@ -1,0 +1,23 @@
+2011/01/20 17:25:08 Start debugger
+2011/01/20 17:25:23 Killed server with pid: 16947
+2011/01/20 17:25:23 Killed server with pid: 16950
+2011/01/20 17:25:39 Start debugger
+2011/01/20 17:25:44 Set breakpoint to: /Users/ah/Desktop/test_vim_debug.rb:6
+2011/01/20 17:25:47 Set breakpoint to: /Users/ah/Desktop/test_vim_debug.rb:7
+2011/01/20 17:25:51 Continue
+2011/01/20 17:26:12 Killed server with pid: 17001
+2011/01/20 17:26:12 Killed server with pid: 17004
+2011/01/20 17:26:17 Start debugger
+2011/01/20 17:26:17 Received command: <breakpointAdded no="1" location="/Users/ah/Desktop/test_vim_debug.rb:6"/>++vim-ruby-debugger separator++<breakpointAdded no="2" location="/Users/ah/Desktop/test_vim_debug.rb:7"/>++vim-ruby-debugger separator++<breakpoint file="/Users/ah/Desktop/test_vim_debug.rb" line="6" threadId="1"/>++vim-ruby-debugger separator++<variables><variable name="a" kind="local" value="1" type="Fixnum" hasChildren="false" objectId="+0x3"/><variable name="b" kind="local" value="2" type="Fixnum" hasChildren="false" objectId="+0x5"/></variables>++vim-ruby-debugger separator++<frames><frame no='1' file='/Users/ah/Desktop/test_vim_debug.rb' line='6' current='true' /></frames>
+2011/01/20 17:26:17 Breakpoint is set: /Users/ah/Desktop/test_vim_debug.rb:6
+2011/01/20 17:26:17 Breakpoint is set: /Users/ah/Desktop/test_vim_debug.rb:7
+2011/01/20 17:26:17 Jumped to breakpoint /Users/ah/Desktop/test_vim_debug.rb:6
+2011/01/20 17:26:17 Initializing local variables
+2011/01/20 17:26:24 Continue
+2011/01/20 17:26:24 Received command: <breakpoint file="/Users/ah/Desktop/test_vim_debug.rb" line="7" threadId="1"/>++vim-ruby-debugger separator++<variables><variable name="a" kind="local" value="1" type="Fixnum" hasChildren="false" objectId="+0x3"/><variable name="b" kind="local" value="2" type="Fixnum" hasChildren="false" objectId="+0x5"/></variables>++vim-ruby-debugger separator++<frames><frame no='1' file='/Users/ah/Desktop/test_vim_debug.rb' line='7' current='true' /></frames>
+2011/01/20 17:26:24 Jumped to breakpoint /Users/ah/Desktop/test_vim_debug.rb:7
+2011/01/20 17:26:24 Initializing local variables
+2011/01/20 17:26:33 Received command: <eval expression="b" value="2" />
+2011/01/20 17:26:44 Killed server with pid: 17059
+2011/01/20 17:26:44 Killed server with pid: 17062
+2011/01/20 17:26:50 Continue
