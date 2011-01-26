@@ -83,22 +83,19 @@ let g:rsenseHome = "/opt/rsense-0.3"
 :runtime macros/matchit.vim
 
 " VimDebug 
-map <LocalLeader>12 : call DBGRstartVimDebuggerDaemon(' ')<cr>
-map <LocalLeader>s/ : DBGRstartVDD
-map <LocalLeader>7  : call DBGRstep()<CR>
-map <LocalLeader>8  : call DBGRnext()<CR>
-" continue
-map <LocalLeader>9  : call DBGRcont()<CR>
+map <LocalLeader>1  : DBGRstart<CR>
+map <LocalLeader>s/ : DBGRstart
+map <LocalLeader>2  : call DBGRstep()<CR>
+map <LocalLeader>3  : call DBGRnext()<CR>
+map <LocalLeader>4  : call DBGRcont()<CR>                   " continue
 map <LocalLeader>b  : call DBGRsetBreakPoint()<CR>
 map <LocalLeader>c  : call DBGRclearBreakPoint()<CR>
 map <LocalLeader>ca : call DBGRclearAllBreakPoints()<CR>
-map <LocalLeader>v/ : DBGRprintExpression
-" print value of word under the cursor
-map <LocalLeader>v  : DBGRprintExpression2 expand("<cWORD>")<CR>
+map <LocalLeader>v/ : DBGRprint
+map <LocalLeader>v  : DBGRprintExpand expand("<cWORD>")<CR> " print value under the cursor
 map <LocalLeader>/  : DBGRcommand
-map <LocalLeader>10 : call DBGRrestart()<CR>
-map <LocalLeader>11 : call DBGRquit()<CR>
-let g:DBGRlineNumbers      = 1
+map <LocalLeader>5  : call DBGRrestart()<CR>
+map <LocalLeader>6  : call DBGRquit()<CR>
 
 " Define Function Quick-Fix-List-Do:
 fun! QuickfixLocationListDo(bang, command)
