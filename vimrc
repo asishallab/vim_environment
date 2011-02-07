@@ -35,7 +35,7 @@ set nowrap
 set spell spelllang=en
 
 " preview
-let g:PreviewBrowsers="open -a Safari"
+let g:PreviewBrowsers="open -a Chromium"
 
 " Ruby-Rails
 let g:ruby_debugger_progname = '/usr/bin/mvim'
@@ -74,6 +74,7 @@ map <Leader>. :FufFile <CR>
 map <Leader>- :FufBuffer <CR>
 " Command-T
 map <Leader># :CommandT <CR>
+map <Leader>+ :CommandTFlush <CR>
 
 " rsense
 let g:rsenseHome = "/opt/rsense-0.3"
