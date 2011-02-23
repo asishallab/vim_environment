@@ -95,3 +95,10 @@ snippet cl
 snippet slurp
 	my $${1:var};
 	{ local $/ = undef; local *FILE; open FILE, "<${2:file}"; $$1 = <FILE>; close FILE }${3}
+
+snippet accs
+	sub ${1:var} {
+		my ( $self, $$1 ) = @_;
+		$self->{_$1} = $$1 if defined($$1);
+		return $self->{_$1};
+	}${2}

@@ -36,6 +36,7 @@ set spell spelllang=en
 
 " preview
 let g:PreviewBrowsers="open -a Chromium"
+let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css"
 
 " Ruby-Rails
 let g:ruby_debugger_progname = '/usr/bin/mvim'
