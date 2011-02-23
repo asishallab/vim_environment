@@ -106,7 +106,8 @@ class Preview
     path = tmp_write(ext, yield)
     app = get_apps_by_type(app_type).find{|app| system("which #{app.split()[0]} &> /dev/null")}
     if app
-      VIM.command("!" + app + " " + path)
+      system("#{app} #{path}")
+      #VIM.command("!" + app + " " + path)
       # double fork to avoid zombies
       # child = fork do
       #   grandchild = fork do
