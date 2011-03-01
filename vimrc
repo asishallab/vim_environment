@@ -14,6 +14,7 @@ set backupdir=~/.vim/tmp/backup
 " General settings
 let mapleader = ","
 let maplocalleader = "-"
+map <Leader><Space> :copen <CR>
 syntax enable
 set tabstop=2
 set smarttab
@@ -33,6 +34,9 @@ set nowrap
 
 " Spellcheck:
 set spell spelllang=en
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
 
 " preview
 let g:PreviewBrowsers="open -a Chromium"
@@ -98,6 +102,18 @@ map <LocalLeader>v  : DBGRprintExpand expand("<cWORD>")<CR> " print value under 
 map <LocalLeader>/  : DBGRcommand
 map <LocalLeader>5  : call DBGRrestart()<CR>
 map <LocalLeader>6  : call DBGRquit()<CR>
+
+" Vim and Java:
+" http://everything101.sourceforge.net/docs/papers/java_and_vim.html
+autocmd Filetype java set makeprg=ant\ -f\ build.xml 
+autocmd Filetype java set efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+autocmd Filetype java set include=^#\s*import 
+autocmd Filetype java set includeexpr=substitute(v:fname,'\\.','/','g')
+autocmd Filetype java map gc gdbf
+command Jtags :exe ":! ctags -R --language-force=java -f.tags ./" 
+autocmd FileType java set tags=.tags
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+let BeanShell_Cmd = "java -cp /opt/bsh-2.0b4.jar bsh.Interpreter"
 
 " Define Function Quick-Fix-List-Do:
 fun! QuickfixLocationListDo(bang, command)
