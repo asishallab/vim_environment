@@ -123,7 +123,7 @@ fun! Add_srcs_dirs_to_path()
   require 'set'
   result = []
   Open3.popen3("find . -name '*.java'") { |stdin, stdout, stderr| result = stdout.readlines}
-  VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\.\//, '').sub(/\/[^\/]+\.java$/, '/')}" end).to_set.to_a.join(', '))
+  VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\.\//, '').sub(/\/[^\/]+\.java$/, '/')}" end).to_set.to_a.join(','))
 RUBY_CODE
 endfun
 
