@@ -32,6 +32,9 @@ set gfn=Monaco:h13
 "set t_Co=256
 set nowrap
 
+" Format:
+inoremap <C-F> <ESC>vipgqA
+
 " Spellcheck:
 set spell spelllang=en
 
