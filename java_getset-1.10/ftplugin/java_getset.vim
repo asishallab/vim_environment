@@ -141,7 +141,7 @@
 "       range of properties specified via a visual block.  User is not
 "       prompted.
 "
-"   <LocalLeader>b   (or <Plug>JavagetsetInsertBothGetterSetter)
+"   <LocalLeader>gs   (or <Plug>JavagetsetInsertBothGetterSetter)
 "       Inserts both a getter and setter for the property on the current
 "       line, or the range of properties specified via a visual block.
 "       User is not prompted.
@@ -799,7 +799,7 @@ if !exists("no_plugin_maps") && !exists("no_java_maps")
     \ :call <SID>InsertGetterSetter('s')<CR>
 
   if !hasmapto('<Plug>JavagetsetInsertBothGetterSetter')
-    map <unique> <buffer> <LocalLeader>b <Plug>JavagetsetInsertBothGetterSetter
+    map <unique> <buffer> <LocalLeader>gs <Plug>JavagetsetInsertBothGetterSetter
   endif
   noremap <buffer> <script> 
     \ <Plug>JavagetsetInsertBothGetterSetter
