@@ -116,17 +116,22 @@ autocmd Filetype java map gc gdbf
 command Jtags :exe ":! ctags -R --language-force=java -f.tags ./" 
 autocmd FileType java set tags=.tags
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd Filetype java call Add_srcs_dirs_to_path()
-let BeanShell_Cmd = "java -cp /opt/bsh-2.0b4.jar bsh.Interpreter"
+autocmd Filetype java call Add_java_dirs_to_path()
 
 " Define Function to set path for Java-Development:
-fun! Add_srcs_dirs_to_path() 
+fun! Add_java_dirs_to_path() 
   ruby << RUBY_CODE
   require 'open3'
   require 'set'
   result = []
   Open3.popen3("find . -name '*.java'") { |stdin, stdout, stderr| result = stdout.readlines}
   VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\.\//, '').sub(/\/[^\/]+\.java$/, '/')}" end).to_set.to_a.join(','))
+  VIM.evaluate("javacomplete#AddSourcePath('src')") if File.exist?('src') && File.directory?('src')
+  VIM.evaluate("javacomplete#AddSourcePath('test')") if File.exist?('test') && File.directory?('test')
+  Open3.popen3("find . -name '*.jar'") { |stdin, stdout, stderr| result = stdout.readlines}
+  cp = ( result.map do |jar| "#{File.expand_path(jar.strip)}" end )
+  VIM.command("let g:java_classpath='#{cp.join(':')}'")
+  VIM.command("let g:BeanShell_Cmd='java -cp /opt/bsh-2.0b4.jar:#{cp.join(':')} bsh.Interpreter'")
 RUBY_CODE
 endfun
 
