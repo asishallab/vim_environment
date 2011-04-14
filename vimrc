@@ -131,7 +131,7 @@ fun! Add_java_dirs_to_path()
   Open3.popen3("find . -name '*.jar'") { |stdin, stdout, stderr| result = stdout.readlines}
   cp = ( result.map do |jar| "#{File.expand_path(jar.strip)}" end )
   VIM.command("let g:java_classpath='#{cp.join(':')}'")
-  VIM.command("let g:BeanShell_Cmd='java -cp /opt/bsh-2.0b4.jar:#{cp.join(':')} bsh.Interpreter'")
+  VIM.command("let g:BeanShell_Cmd='java -cp /opt/bsh-2.0b4.jar:#{cp.join(':')}:classes bsh.Interpreter'")
 RUBY_CODE
 endfun
 
