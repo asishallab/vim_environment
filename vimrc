@@ -23,7 +23,10 @@ set autoindent
 set expandtab
 set number
 filetype plugin indent on 
-set vb t_vb= " No error-bell nor flash
+" No error-bell nor flash
+set noerrorbells
+set visualbell
+set t_vb=
 "set autochdir " always switch to the current file directory
 set hlsearch
 "set textwidth=80
