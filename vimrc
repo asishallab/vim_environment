@@ -31,7 +31,7 @@ set t_vb=
 set hlsearch
 "set textwidth=80
 colorscheme macvim
-set gfn=Monospace\ 12
+set gfn=Monaco:h13
 autocmd BufNewFile,BufRead set nowrap
 
 " Spellcheck:
@@ -88,9 +88,8 @@ fun! FlushFufAndCommandT()
   exec :FufRenewCache
 endfun
 
-
 " rsense
-let g:rsenseHome = "/home/hallab/rsense-0.3/"
+let g:rsenseHome = "/Users/ah/rsense-0.3/"
 let g:rsenseUseOmniFunc = 1
 
 " Enable vim-textobj-rubyblock
@@ -240,4 +239,3 @@ map <Leader>o :DiffOrig <CR>
 """"""""""""""""""""""""""""""""""""""""""
 " End of Bram Moolenaar's .vimrc-example "
 """"""""""""""""""""""""""""""""""""""""""
-
