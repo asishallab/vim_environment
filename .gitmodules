@@ -7,3 +7,6 @@
 [submodule "neocomplcache"]
 	path = neocomplcache
 	url = git://github.com/Shougo/neocomplcache.git
+[submodule "supertab"]
+	path = supertab
+	url = https://github.com/ervandew/supertab.git

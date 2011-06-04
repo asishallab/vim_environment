@@ -1,1 +1,2 @@
 Fast Debugger (ruby-debug-ide 0.4.16, ruby-debug-base 0.10.4) listens on 127.0.0.1:39767
+In order to start the rufus/scheduler for sending out message-digests un-comment code in /Users/ah/projects/gsmMonitoring/config/initializers/mailing_scheduler.rb

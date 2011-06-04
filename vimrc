@@ -26,7 +26,7 @@ filetype plugin indent on
 " No error-bell nor flash
 set noerrorbells
 set visualbell
-set t_vb=
+set vb t_vb=
 "set autochdir " always switch to the current file directory
 set hlsearch
 "set textwidth=80
@@ -40,6 +40,11 @@ set spell spelllang=en
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
 
+" acp with snipmate:
+let g:acp_behaviorSnipmateLength = 1
+let g:acp_ignorecaseOption = 1
+let g:acp_behaviorKeywordLength = 1
+
 " preview
 let g:PreviewBrowsers="open -a Chromium"
 let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css"
@@ -49,7 +54,8 @@ let g:ruby_debugger_progname = '/usr/bin/mvim'
 
 " Taglist
 let Tlist_Use_Right_Window = 1
-let Tlist_Show_One_File = 1
+" let Tlist_Show_One_File = 1
+let Tlist_Auto_Update = 0
 
 " Folding stuff
 set foldmethod=indent
@@ -81,16 +87,15 @@ map <Leader>. :FufFile <CR>
 map <Leader>- :FufBuffer <CR>
 " Command-T
 map <Leader># :CommandT <CR>
-map <Leader>+ call FlushFufAndCommandT()
 
-fun! FlushFufAndCommandT() 
+" Flush Cashes
+map <Leader>+ call FlushCashes()
+
+fun! FlushCashes() 
   exec :CommandTFlush
   exec :FufRenewCache
+  exec :TlistUpdate
 endfun
-
-" rsense
-let g:rsenseHome = "/Users/ah/rsense-0.3/"
-let g:rsenseUseOmniFunc = 1
 
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':
@@ -163,19 +168,6 @@ fun! QuickfixLocationListDo(bang, command)
 endfunc
 
 com! -nargs=+ -bang -bar Qldo :call QuickfixLocationListDo(<bang>0,<q-args>)
-
-
-" AutocompletePopup claims, this is needed,
-" though everything works fine without it.
-" fun! GetSnipsInCurrentScope()
-"   let snips = {}
-"   for scope in [bufnr('%')] + split(&ft, '\\.') + ['_']
-"     call extend(snips, get(s:snippets, scope, {}), 'keep')
-"     call extend(snips, get(s:multi_snips, scope, {}), 'keep')
-"   endfor
-"   return snips
-" endf
-" let g:acp_behaviorSnipmateLength=1
 
 " Enable JQuery-Syntax
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
