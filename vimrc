@@ -89,13 +89,13 @@ map <Leader>- :FufBuffer <CR>
 map <Leader># :CommandT <CR>
 
 " Flush Cashes
-map <Leader>+ call FlushCashes()
+map <Leader>+ 
+      \:silent :CommandTFlush <CR> <bar>
+      \:silent :FufRenewCache <CR>
 
-fun! FlushCashes() 
-  exec :CommandTFlush
-  exec :FufRenewCache
-  exec :TlistUpdate
-endfun
+" Cscope:
+com! CsRef !find . -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
+:cs add ./cscope.out
 
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':
@@ -118,14 +118,14 @@ map <LocalLeader>6  : call DBGRquit()<CR>
 
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
-" autocmd Filetype java set makeprg=ant\ -f\ build.xml 
-" autocmd Filetype java set efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-" autocmd Filetype java set include=^#\s*import 
-" autocmd Filetype java set includeexpr=substitute(v:fname,'\\.','/','g')
-" autocmd Filetype java map gc gdbf
+autocmd Filetype java set makeprg=ant\\ -f\\ build.xml 
+autocmd Filetype java set efm=%A\\ %#[javac]\\ %f:%l:\\ %m,%-Z\\ %#[javac]\\ %p^,%-C%.%#
+autocmd Filetype java set include=^#\\s*import 
+autocmd Filetype java set includeexpr=substitute(v:fname,'\\\\.','/','g')
+autocmd Filetype java map gc gdbf
 command Jtags :exe ":! ctags -R --language-force=java -f.tags ./" 
 autocmd FileType java set tags=.tags
-" autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype java call Add_java_dirs_to_path()
 
 " Define Function to set path for Java-Development:
@@ -134,13 +134,13 @@ fun! Add_java_dirs_to_path()
   require 'open3'
   require 'set'
   result = []
-  # Open3.popen3("find . -name '*.java'") { |stdin, stdout, stderr| result = stdout.readlines}
-  # VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\.\//, '').sub(/\/[^\/]+\.java$/, '/')}" end).to_set.to_a.join(','))
-  # VIM.evaluate("javacomplete#AddSourcePath('src')") if File.exist?('src') && File.directory?('src')
-  # VIM.evaluate("javacomplete#AddSourcePath('test')") if File.exist?('test') && File.directory?('test')
+  Open3.popen3("find . -name '*.java'") { |stdin, stdout, stderr| result = stdout.readlines}
+  VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\\.\\//, '').sub(/\\/[^\\/]+\\.java$/, '/')}" end).to_set.to_a.join(','))
+  VIM.evaluate("javacomplete#AddSourcePath('src')") if File.exist?('src') && File.directory?('src')
+  VIM.evaluate("javacomplete#AddSourcePath('test')") if File.exist?('test') && File.directory?('test')
   Open3.popen3("find . -name '*.jar'") { |stdin, stdout, stderr| result = stdout.readlines}
   cp = ( result.map do |jar| "#{File.expand_path(jar.strip)}" end )
-  # VIM.command("let g:java_classpath='#{cp.join(':')}'")
+  VIM.command("let g:java_classpath='#{cp.join(':')}'")
   VIM.command("let g:BeanShell_Cmd='java -Xms1024m -Xmx2048m -cp ~/bsh-2.0b4.jar:#{cp.join(':')}:classes bsh.Interpreter'")
 RUBY_CODE
 endfun
