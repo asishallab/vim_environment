@@ -39,6 +39,16 @@ set spell spelllang=en
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
+" Enable Tag-Completion with Supertab
+function MyTagContext()
+  if !empty(&tags)
+    return "\<C-x>\<C-]>"
+  endif
+  " no return will result in the evaluation of the next
+  " configured context
+endfunction
+let g:SuperTabCompletionContexts =
+      \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 
 " acp with snipmate:
 let g:acp_behaviorSnipmateLength = 1
@@ -51,6 +61,11 @@ let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css
 
 " Ruby-Rails
 let g:ruby_debugger_progname = '/usr/bin/mvim'
+let g:rails_ctags_arguments='--languages=-javascript $GEM_HOME/gems '
+
+" Cscope:
+com! CsRef !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
+:cs add ./cscope.out
 
 " Taglist
 let Tlist_Use_Right_Window = 1
@@ -92,10 +107,6 @@ map <Leader># :CommandT <CR>
 map <Leader>+ 
       \:silent :CommandTFlush <CR> <bar>
       \:silent :FufRenewCache <CR>
-
-" Cscope:
-com! CsRef !find . -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
-:cs add ./cscope.out
 
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':
