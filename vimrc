@@ -50,7 +50,7 @@ endfunction
 let g:SuperTabCompletionContexts =
       \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 
-" acp with snipmate:
+" acp - with snipmate and ctags:
 let g:acp_behaviorSnipmateLength = 1
 let g:acp_ignorecaseOption = 1
 let g:acp_behaviorKeywordLength = 1
@@ -61,7 +61,7 @@ let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css
 
 " Ruby-Rails
 let g:ruby_debugger_progname = '/usr/bin/mvim'
-let g:rails_ctags_arguments='--languages=-javascript $GEM_HOME/gems '
+let g:rails_ctags_arguments='--c-kinds=+p --fields=+S --languages=-javascript $GEM_HOME/gems '
 
 " Cscope:
 com! CsRef !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
@@ -69,8 +69,8 @@ com! CsRef !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.r
 
 " Taglist
 let Tlist_Use_Right_Window = 1
-" let Tlist_Show_One_File = 1
-let Tlist_Auto_Update = 0
+let Tlist_Show_One_File = 1
+" let Tlist_Auto_Update = 0
 
 " Folding stuff
 set foldmethod=indent
@@ -96,15 +96,14 @@ let g:hasrmenu = 0
 let vimrplugin_never_unmake_menu = 1
 " let vimrplugin_r_path = "/opt/share/local/development/R/R-2.11.1/bin"
 
-" FuzzyFinder
-map <Leader>, :FufFile **/<CR>
-map <Leader>. :FufFile <CR>
-map <Leader>- :FufBuffer <CR>
 " Command-T
-map <Leader># :CommandT <CR>
-
-" Flush Cashes
-map <Leader>+ 
+map <Leader>, :CommandT <CR>
+map <Leader>. :CommandTBuffer <CR>
+" Fuzzy Finder:
+map <Leader>+ :FufFile **/<CR>
+map <Leader># :FufBuffer <CR>
+" Flush CommandT and FuzzyFinder Cashes
+map <Leader>- 
       \:silent :CommandTFlush <CR> <bar>
       \:silent :FufRenewCache <CR>
 
