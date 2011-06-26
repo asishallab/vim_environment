@@ -54,6 +54,7 @@ let g:SuperTabCompletionContexts =
 let g:acp_behaviorSnipmateLength = 1
 let g:acp_ignorecaseOption = 1
 let g:acp_behaviorKeywordLength = 1
+let g:acp_behavior = {'*': [{'meets': 'MyTagContext', 'repeat': 0, 'command': '^X^]'}, {'meets': 'acp#meetsForSnipmate', 'completefunc': 'acp#completeSnipmate', 'onPopupClose': 'acp#onPopupCloseSnipmate', 'repeat': 0, 'command': '^X^U'}, {'meets': 'acp#meetsForKeyword', 'repeat': 0, 'command': '^N'}, {'meets': 'acp#meetsForFile', 'repeat': 1, 'command': '^X^F'}]} 
 
 " preview
 let g:PreviewBrowsers="open -a Chromium"
