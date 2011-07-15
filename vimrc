@@ -34,6 +34,17 @@ colorscheme macvim
 set gfn=Monaco:h13
 autocmd BufNewFile,BufRead set nowrap
 
+" Set an orange cursor in insert mode, and a red cursor otherwise.
+" Works at least for xterm and rxvt terminals.
+" Does not work for gnome terminal, konsole, xfce4-terminal.
+if &term =~ "xterm\\|rxvt"
+  :silent !echo -ne "\033]12;red\007"
+  let &t_SI = "\033]12;black\007"
+  let &t_EI = "\033]12;red\007"
+  autocmd VimLeave * :!echo -ne "\033]12;black\007"
+endif
+
+
 " Spellcheck:
 set spell spelllang=en
 
@@ -98,11 +109,11 @@ let vimrplugin_never_unmake_menu = 1
 " let vimrplugin_r_path = "/opt/share/local/development/R/R-2.11.1/bin"
 
 " Command-T
-map <Leader>, :CommandT <CR>
-map <Leader>. :CommandTBuffer <CR>
+map <Leader>* :CommandT <CR>
+map <Leader>+ :CommandTBuffer <CR>
 " Fuzzy Finder:
-map <Leader>+ :FufFile **/<CR>
-map <Leader># :FufBuffer <CR>
+map <Leader>, :FufFile **/<CR>
+map <Leader>. :FufBuffer <CR>
 " Flush CommandT and FuzzyFinder Cashes
 map <Leader>- 
       \:silent :CommandTFlush <CR> <bar>
