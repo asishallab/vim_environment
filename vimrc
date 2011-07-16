@@ -23,6 +23,9 @@ set autoindent
 set expandtab
 set number
 filetype plugin indent on 
+" Standard Text-Editor Selection via Shift-Movement-Command:
+set selectmode=key
+set keymodel=startsel
 " No error-bell nor flash
 set noerrorbells
 set visualbell
@@ -43,7 +46,6 @@ if &term =~ "xterm\\|rxvt"
   let &t_EI = "\033]12;red\007"
   autocmd VimLeave * :!echo -ne "\033]12;black\007"
 endif
-
 
 " Spellcheck:
 set spell spelllang=en
