@@ -23,9 +23,6 @@ set autoindent
 set expandtab
 set number
 filetype plugin indent on 
-" Standard Text-Editor Selection via Shift-Movement-Command:
-set selectmode=key
-set keymodel=startsel
 " No error-bell nor flash
 set noerrorbells
 set visualbell
@@ -35,7 +32,26 @@ set hlsearch
 "set textwidth=80
 colorscheme macvim
 set gfn=Monaco:h13
-autocmd BufNewFile,BufRead set nowrap
+
+" autocmd BufNewFile,BufRead set nowrap
+" Wraping and moving in wrapped lines:
+set wrap linebreak nolist
+set showbreak=…
+vmap <C-j> gj
+vmap <C-k> gk
+vmap <C-4> g$
+vmap <C-6> g^
+vmap <C-0> g^
+nmap <C-j> gj
+nmap <C-k> gk
+nmap <C-4> g$
+nmap <C-6> g^
+nmap <C-0> g^
+
+" Surround for eruby:
+autocmd FileType eruby let b:surround_37 = "<% \r %>"
+autocmd FileType eruby let b:surround_61 = "<%= \r %>"
+autocmd FileType eruby let b:surround_35 = "#{ \r }"
 
 " Set an orange cursor in insert mode, and a red cursor otherwise.
 " Works at least for xterm and rxvt terminals.
@@ -67,7 +83,10 @@ let g:SuperTabCompletionContexts =
 let g:acp_behaviorSnipmateLength = 1
 let g:acp_ignorecaseOption = 1
 let g:acp_behaviorKeywordLength = 1
-" let g:acp_behavior = {'*': [{'meets': 'MyTagContext', 'repeat': 0, 'command': '^X^]'}, {'meets': 'acp#meetsForSnipmate', 'completefunc': 'acp#completeSnipmate', 'onPopupClose': 'acp#onPopupCloseSnipmate', 'repeat': 0, 'command': '^X^U'}, {'meets': 'acp#meetsForKeyword', 'repeat': 0, 'command': '^N'}, {'meets': 'acp#meetsForFile', 'repeat': 1, 'command': '^X^F'}]} 
+" let g:acp_behavior = {'ruby': [{'meets': 'AlwaysTrue', 'repeat': 0, 'command': '^X^]'}]} 
+" function AlwaysTrue(myarg)
+"   return "true"
+" endfunction
 
 " preview
 let g:PreviewBrowsers="open -a Chromium"
@@ -82,9 +101,11 @@ com! CsRef !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.r
 :cs add ./cscope.out
 
 " Taglist
+map <LocalLeader>, :TlistToggle <CR>
+map <LocalLeader>- :TlistUpdate <CR>
 let Tlist_Use_Right_Window = 1
 let Tlist_Show_One_File = 1
-" let Tlist_Auto_Update = 0
+let Tlist_Auto_Update = 1
 
 " Folding stuff
 set foldmethod=indent
@@ -111,8 +132,8 @@ let vimrplugin_never_unmake_menu = 1
 " let vimrplugin_r_path = "/opt/share/local/development/R/R-2.11.1/bin"
 
 " Command-T
-map <Leader>* :CommandT <CR>
-map <Leader>+ :CommandTBuffer <CR>
+map <Leader># :CommandT <CR>
+map <Leader>* :CommandTBuffer <CR>
 " Fuzzy Finder:
 map <Leader>, :FufFile **/<CR>
 map <Leader>. :FufBuffer <CR>
