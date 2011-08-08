@@ -83,10 +83,7 @@ let g:SuperTabCompletionContexts =
 let g:acp_behaviorSnipmateLength = 1
 let g:acp_ignorecaseOption = 1
 let g:acp_behaviorKeywordLength = 1
-" let g:acp_behavior = {'ruby': [{'meets': 'AlwaysTrue', 'repeat': 0, 'command': '^X^]'}]} 
-" function AlwaysTrue(myarg)
-"   return "true"
-" endfunction
+let g:acp_completeOption = '.,w,b,u,t,i'
 
 " preview
 let g:PreviewBrowsers="open -a Chromium"
@@ -133,7 +130,7 @@ let vimrplugin_never_unmake_menu = 1
 
 " Command-T
 map <Leader># :CommandT <CR>
-map <Leader>* :CommandTBuffer <CR>
+map <Leader>+ :CommandTBuffer <CR>
 " Fuzzy Finder:
 map <Leader>, :FufFile **/<CR>
 map <Leader>. :FufBuffer <CR>
