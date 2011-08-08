@@ -31,7 +31,7 @@ set vb t_vb=
 set hlsearch
 "set textwidth=80
 colorscheme macvim
-set gfn=Monaco:h13
+set gfn=Monospace\ 12
 
 " autocmd BufNewFile,BufRead set nowrap
 " Wraping and moving in wrapped lines:
