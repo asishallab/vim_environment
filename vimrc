@@ -94,8 +94,31 @@ let g:ruby_debugger_progname = '/usr/bin/vim'
 let g:rails_ctags_arguments='--c-kinds=+p --fields=+S --languages=-javascript $GEM_HOME/gems '
 
 " Cscope:
-com! CsRef !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
+com! Rscope !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
 :cs add ./cscope.out
+
+if has("cscope")
+  set csto=0
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+    cs add cscope.out
+    " else add database pointed to by environment
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+  set csverb
+endif
+
+nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
 " Taglist
 map <LocalLeader>, :TlistToggle <CR>
@@ -129,6 +152,7 @@ let vimrplugin_never_unmake_menu = 1
 " let vimrplugin_r_path = "/opt/share/local/development/R/R-2.11.1/bin"
 
 " Command-T
+let g:CommandTMatchWindowAtTop=1
 map <Leader># :CommandT <CR>
 map <Leader>+ :CommandTBuffer <CR>
 " Fuzzy Finder:
