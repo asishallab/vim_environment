@@ -56,7 +56,7 @@ autocmd FileType eruby let b:surround_35 = "#{ \r }"
 " Set an orange cursor in insert mode, and a red cursor otherwise.
 " Works at least for xterm and rxvt terminals.
 " Does not work for gnome terminal, konsole, xfce4-terminal.
-if &term =~ "xterm\\|rxvt"
+if !has('gui_running') && !&term =~ "xterm\\|rxvt"
   :silent !echo -ne "\033]12;red\007"
   let &t_SI = "\033]12;black\007"
   let &t_EI = "\033]12;red\007"
