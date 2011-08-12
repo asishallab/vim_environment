@@ -91,7 +91,13 @@ let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css
 
 " Ruby-Rails
 let g:ruby_debugger_progname = '/usr/bin/vim'
-let g:rails_ctags_arguments='--c-kinds=+p --fields=+S --languages=-javascript $GEM_HOME/gems '
+
+" rails-vim and ctags
+" ctag the RVM-Environment and write those tags into ./tmp/rvm_env_tags
+com! RtagsEnv !ctags -f ./tmp/rvm_env_tags -R --langmap="ruby:+.rake.builder.rjs" --c-kinds=+p --fields=+S --languages=-javascript $GEM_HOME/gems $MY_RUBY_HOME
+if(filereadable("./tmp/rvm_env_tags"))
+  set ctags+=./tmp/rvm_env_tags
+endif
 
 " Cscope:
 com! Rscope !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
