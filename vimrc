@@ -98,7 +98,7 @@ com! Rscope !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.
 :cs add ./cscope.out
 
 if has("cscope")
-  set csto=0
+  set csto=1
   set cst
   set nocsverb
   " add any database in current directory
