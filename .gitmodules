@@ -10,3 +10,6 @@
 [submodule "supertab"]
 	path = supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "vim-rails"]
+	path = vim-rails
+	url = git://github.com/tpope/vim-rails.git

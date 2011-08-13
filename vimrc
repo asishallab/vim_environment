@@ -33,20 +33,9 @@ set hlsearch
 colorscheme macvim
 set gfn=Monospace\ 12
 
-" autocmd BufNewFile,BufRead set nowrap
-" Wraping and moving in wrapped lines:
-set wrap linebreak nolist
+" Wraping:
+command! -nargs=* Wrap set wrap linebreak nolist
 set showbreak=…
-vmap <C-j> gj
-vmap <C-k> gk
-vmap <C-4> g$
-vmap <C-6> g^
-vmap <C-0> g^
-nmap <C-j> gj
-nmap <C-k> gk
-nmap <C-4> g$
-nmap <C-6> g^
-nmap <C-0> g^
 
 " Surround for eruby:
 autocmd FileType eruby let b:surround_37 = "<% \r %>"
@@ -94,13 +83,22 @@ let g:ruby_debugger_progname = '/usr/bin/vim'
 
 " rails-vim and ctags
 " ctag the RVM-Environment and write those tags into ./tmp/rvm_env_tags
-com! RtagsEnv !ctags -f ./tmp/rvm_env_tags -R --langmap="ruby:+.rake.builder.rjs" --c-kinds=+p --fields=+S --languages=-javascript $GEM_HOME/gems $MY_RUBY_HOME
+fun! RtagsEnvFunky() 
+  !mkdir -p ./tmp && ctags -f ./tmp/rvm_env_tags -R --langmap="ruby:+.rake.builder.rjs" --c-kinds=+p --fields=+S --languages=-javascript $GEM_HOME/gems $MY_RUBY_HOME 
+  set tags+=tmp/rvm_env_tags
+endfun
+com! RtagsEnv :call RtagsEnvFunky()
+
 if(filereadable("./tmp/rvm_env_tags"))
-  set ctags+=./tmp/rvm_env_tags
+  set tags+=./tmp/rvm_env_tags
 endif
 
-" Cscope:
-com! Rscope !find . $GEM_HOME/gems -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
+" Cscope for Ruby on current directory.
+" (
+" To add GEMs and Ruby add following between '.' and '-iname':
+" $GEM_HOME $MY_RUBY_HOME
+" )
+com! Rscope !find . -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
 :cs add ./cscope.out
 
 if has("cscope")
@@ -115,6 +113,7 @@ if has("cscope")
     cs add $CSCOPE_DB
   endif
   set csverb
+  set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,f-
 endif
 
 nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
@@ -125,6 +124,7 @@ nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+" end Cscope
 
 " Taglist
 map <LocalLeader>, :TlistToggle <CR>
@@ -188,6 +188,30 @@ map <LocalLeader>/  : DBGRcommand
 map <LocalLeader>5  : call DBGRrestart()<CR>
 map <LocalLeader>6  : call DBGRquit()<CR>
 
+" Define Function Quick-Fix-List-Do:
+fun! QFDo(bang, command) 
+     let qflist={} 
+     if a:bang 
+         let tlist=map(getloclist(0), 'get(v:val, ''bufnr'')') 
+     else 
+         let tlist=map(getqflist(), 'get(v:val, ''bufnr'')') 
+     endif 
+     if empty(tlist) 
+        echomsg "Empty Quickfixlist. Aborting" 
+        return 
+     endif 
+     for nr in tlist 
+     let item=fnameescape(bufname(nr)) 
+     if !get(qflist, item,0) 
+         let qflist[item]=1 
+     endif 
+     endfor 
+     :exe 'argl ' .join(keys(qflist)) 
+     :exe 'argdo ' . a:command 
+endfunc 
+
+com! -bar -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>) 
+
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
 autocmd Filetype java set makeprg=ant\\ -f\\ build.xml 
@@ -199,7 +223,6 @@ command Jtags :exe ":! ctags -R --language-force=java -f.tags ./"
 autocmd FileType java set tags=.tags
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype java call Add_java_dirs_to_path()
-
 " Define Function to set path for Java-Development:
 fun! Add_java_dirs_to_path() 
   ruby << RUBY_CODE
@@ -216,30 +239,6 @@ fun! Add_java_dirs_to_path()
   VIM.command("let g:BeanShell_Cmd='java -Xms1024m -Xmx2048m -cp ~/bsh-2.0b4.jar:#{cp.join(':')}:classes bsh.Interpreter'")
 RUBY_CODE
 endfun
-
-" Define Function Quick-Fix-List-Do:
-fun! QuickfixLocationListDo(bang, command)
-  let qflist={}
-  if a:bang
-    let tlist=map(getloclist(0), 'get(v:val, ''bufnr'')')
-  else
-    let tlist=map(getqflist(), 'get(v:val, ''bufnr'')')
-  endif
-  if empty(tlist)
-    echomsg "Empty Quickfixlist. Aborting"
-    return
-  endif
-  for nr in tlist
-    let item=fnameescape(bufname(nr))
-    if !get(qflist, item,0)
-      let qflist[item]=1
-    endif
-  endfor
-  :exe 'argl ' .join(keys(qflist))
-  :exe 'argdo ' . a:command
-endfunc
-
-com! -nargs=+ -bang -bar Qldo :call QuickfixLocationListDo(<bang>0,<q-args>)
 
 " Enable JQuery-Syntax
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
