@@ -210,7 +210,7 @@ fun! QFDo(bang, command)
      :exe 'argdo ' . a:command 
 endfunc 
 
-com! -bar -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>) 
+com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>) 
 
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
