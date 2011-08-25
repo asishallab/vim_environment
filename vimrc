@@ -41,6 +41,7 @@ set showbreak=…
 autocmd FileType eruby let b:surround_37 = "<% \r %>"
 autocmd FileType eruby let b:surround_61 = "<%= \r %>"
 autocmd FileType eruby let b:surround_35 = "#{ \r }"
+autocmd FileType ruby let b:surround_35 = "#{ \r }"
 
 " Set an orange cursor in insert mode, and a red cursor otherwise.
 " Works at least for xterm and rxvt terminals.
