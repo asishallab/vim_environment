@@ -46,10 +46,9 @@ autocmd FileType eruby let b:surround_35 = "#{ \r }"
 " Works at least for xterm and rxvt terminals.
 " Does not work for gnome terminal, konsole, xfce4-terminal.
 if !has('gui_running') && &term =~ "xterm\\|rxvt"
-  :silent !echo -ne "\033]12;red\007"
-  let &t_SI = "\033]12;black\007"
-  let &t_EI = "\033]12;red\007"
-  autocmd VimLeave * :!echo -ne "\033]12;black\007"
+  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 endif
 
 " Spellcheck:
