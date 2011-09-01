@@ -49,11 +49,11 @@ autocmd FileType ruby let b:surround_35 = "#{ \r }"
 if !has('gui_running') && &term =~ "xterm\\|rxvt"
   au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 endif
 
 " Spellcheck:
-set spell spelllang=en
+" set spell spelllang=en
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
@@ -223,15 +223,16 @@ let g:indexer_ctagsCommandLineOptions='--langmap="ruby:+.rake.builder.rjs" --lan
 
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
-autocmd Filetype java set makeprg=ant\\ -f\\ build.xml 
-autocmd Filetype java set efm=%A\\ %#[javac]\\ %f:%l:\\ %m,%-Z\\ %#[javac]\\ %p^,%-C%.%#
-autocmd Filetype java set include=^#\\s*import 
-autocmd Filetype java set includeexpr=substitute(v:fname,'\\\\.','/','g')
+autocmd Filetype java set makeprg=ant\ -f\ build.xml 
+autocmd Filetype java set efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+autocmd Filetype java set include=^#\s*import 
+autocmd Filetype java set includeexpr=substitute(v:fname,'\\.','/','g')
 autocmd Filetype java map gc gdbf
 command Jtags :exe ":! ctags -R --language-force=java -f.tags ./" 
 autocmd FileType java set tags=.tags
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype java call Add_java_dirs_to_path()
+
 " Define Function to set path for Java-Development:
 fun! Add_java_dirs_to_path() 
   ruby << RUBY_CODE
@@ -239,7 +240,7 @@ fun! Add_java_dirs_to_path()
   require 'set'
   result = []
   Open3.popen3("find . -name '*.java'") { |stdin, stdout, stderr| result = stdout.readlines}
-  VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\\.\\//, '').sub(/\\/[^\\/]+\\.java$/, '/')}" end).to_set.to_a.join(','))
+  VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\.\//, '').sub(/\/[^\/]+\.java$/, '/')}" end).to_set.to_a.join(','))
   VIM.evaluate("javacomplete#AddSourcePath('src')") if File.exist?('src') && File.directory?('src')
   VIM.evaluate("javacomplete#AddSourcePath('test')") if File.exist?('test') && File.directory?('test')
   Open3.popen3("find . -name '*.jar'") { |stdin, stdout, stderr| result = stdout.readlines}
@@ -247,7 +248,7 @@ fun! Add_java_dirs_to_path()
   VIM.command("let g:java_classpath='#{cp.join(':')}'")
   VIM.command("let g:BeanShell_Cmd='java -Xms1024m -Xmx2048m -cp ~/bsh-2.0b4.jar:#{cp.join(':')}:classes bsh.Interpreter'")
 RUBY_CODE
-endfun
+endfunc
 
 " Enable JQuery-Syntax
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
