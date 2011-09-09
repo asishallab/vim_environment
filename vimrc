@@ -31,7 +31,11 @@ set vb t_vb=
 set hlsearch
 "set textwidth=80
 colorscheme macvim
-set gfn=Monospace\ 12
+if has("mac")
+  set gfn=Monaco:h13
+else
+  set gfn=Monospace\ 12
+endif
 
 " Wraping:
 command! -nargs=* Wrap set wrap linebreak nolist
