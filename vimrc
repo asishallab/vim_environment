@@ -103,7 +103,6 @@ endif
 " $GEM_HOME $MY_RUBY_HOME
 " )
 com! Rscope !find . -iname '*.rb' -o -iname '*.erb' -o -iname '*.rhtml' <bar> cscope -q -i - -b
-:cs add ./cscope.out
 
 if has("cscope")
   set csto=1
@@ -223,7 +222,8 @@ com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>)
 " [PROJECTS_PARENT filter="**/*.rb **/*.erb **/*.rake"]
 " ~/projects
 " ------------------------------------------------------------------------------- 
-let g:indexer_ctagsCommandLineOptions='--langmap="ruby:+.rake.builder.rjs" --languages=-javascript'
+autocmd Filetype ruby let g:indexer_ctagsCommandLineOptions='--langmap="ruby:+.rake.builder.rjs" --languages=-javascript'
+autocmd Filetype java let g:indexer_ctagsCommandLineOptions='--language-force=java'
 
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
@@ -233,6 +233,7 @@ autocmd Filetype java set include=^#\s*import
 autocmd Filetype java set includeexpr=substitute(v:fname,'\\.','/','g')
 autocmd Filetype java map gc gdbf
 command Jtags :exe ":! ctags -R --language-force=java -f.tags ./" 
+com! Jscope !find . -iname '*.java' <bar> cscope -q -i - -b
 autocmd FileType java set tags=.tags
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 autocmd Filetype java call Add_java_dirs_to_path()
