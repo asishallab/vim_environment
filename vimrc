@@ -32,10 +32,14 @@ set hlsearch
 "set textwidth=80
 "Remap Arrows to navigate with prepended 'g',
 "so one can navigate through wrapped lines:
-map <up> gk
-map <down> gj
-imap <up> <esc>g<up>i
-imap <down> <esc>g<down>i
+noremap <up> gk
+noremap <down> gj
+noremap k gk
+noremap j gj
+inoremap <up> <esc>g<up>i
+inoremap <down> <esc>g<down>i
+inoremap <A-k> <esc>g<up>i
+inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
 colorscheme macvim
 if has("mac")
