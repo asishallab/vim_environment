@@ -30,6 +30,13 @@ set vb t_vb=
 "set autochdir " always switch to the current file directory
 set hlsearch
 "set textwidth=80
+"Remap Arrows to navigate with prepended 'g',
+"so one can navigate through wrapped lines:
+map <up> gk
+map <down> gj
+imap <up> <esc>g<up>i
+imap <down> <esc>g<down>i
+"Colorscheme & Font:
 colorscheme macvim
 if has("mac")
   set gfn=Monaco:h13
