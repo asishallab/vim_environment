@@ -103,9 +103,8 @@ fun! RtagsEnvFunky()
   set tags+=tmp/rvm_env_tags
 endfun
 com! RtagsEnv :call RtagsEnvFunky()
-
-if(filereadable("./tmp/rvm_env_tags"))
-  set tags+=./tmp/rvm_env_tags
+if(filereadable("tmp/rvm_env_tags"))
+  set tags+=tmp/rvm_env_tags
 endif
 
 " Cscope for Ruby on current directory.
