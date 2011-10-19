@@ -36,8 +36,6 @@ noremap <up> gk
 noremap <down> gj
 noremap k gk
 noremap j gj
-inoremap <up> <esc>g<up>i
-inoremap <down> <esc>g<down>i
 inoremap <A-k> <esc>g<up>i
 inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
@@ -50,7 +48,7 @@ endif
 
 " Wraping:
 command! -nargs=* Wrap set wrap linebreak nolist
-set showbreak=…
+" set showbreak=…
 
 " Surround for eruby:
 autocmd FileType eruby let b:surround_37 = "<% \r %>"
