@@ -221,7 +221,7 @@ fun! QFDo(bang, command)
      :exe 'argdo ' . a:command 
 endfunc 
 
-com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>) 
+com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>)
 
 " Indexer enables automatic update of your exuberant-ctags generated
 " tags-file, every time you save any of your project's code-containing files.
