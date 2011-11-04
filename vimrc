@@ -40,7 +40,9 @@ noremap j gj
 inoremap <A-k> <esc>g<up>i
 inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
-colorscheme macvim
+" colorscheme macvim
+colorscheme solarized
+set background=dark
 if has("mac")
   set gfn=Monaco:h13
 else
@@ -93,7 +95,13 @@ let g:PreviewBrowsers="open -a Chromium"
 let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css"
 
 " Ruby-Rails
-let g:ruby_debugger_progname = '/usr/bin/vim'
+if has("mac")
+  let g:ruby_debugger_progname = 'mvim'
+  " let g:ruby_debugger_debug_mode = 1
+  let g:ruby_debugger_builtin_sender = 0
+else
+  let g:ruby_debugger_progname = '/usr/bin/vim'
+endif
 
 " rails-vim and ctags
 " ctag the RVM-Environment and write those tags into ./tmp/rvm_env_tags

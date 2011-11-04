@@ -1,1 +1,125 @@
-/bin/bash: rdebug-ide: command not found
+Fast Debugger (ruby-debug-ide 0.4.16, ruby-debug-base 0.10.4) listens on 127.0.0.1:39767
+=> Booting Mongrel
+=> Rails 3.0.3 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+In order to start the rufus/scheduler for sending out message-digests un-comment code in /Users/ah/projects/gsmMonitoring/config/initializers/mailing_scheduler.rb
+Otherwise add a cron-job calling the api: curl -d "apikey=6f896e70-4da5-012e-09a5-00264a1ce8b2" http://hostname/api/process_message_queue
+{"scope":["draft_or_pending"],"joins":["auditee"],"order":["child_changed_at DESC, due_date, ref_no"],"where":{}}
+
+
+Started GET "/monitorings" for 127.0.0.1 at Fri Nov 04 14:52:28 +0100 2011
+  Processing by MonitoringsController#index as HTML
+  [1m[36mSQL (2.9ms)[0m  [1mdescribe `roles_users`[0m
+  [1m[35mSQL (0.7ms)[0m  SHOW TABLES
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
+  [1m[35mSQL (1.4ms)[0m  describe `roles_users`
+  [1m[36mRole Load (0.4ms)[0m  [1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 41 )[0m
+DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:5)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:14)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:15)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:16)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:17)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:18)
+  [1m[35mMonitoring Load (0.6ms)[0m  SELECT `monitorings`.* FROM `monitorings` INNER JOIN `auditees` ON `auditees`.`id` = `monitorings`.`auditee_id` WHERE (aasm_state = 'draft' OR aasm_state = 'pending') AND ((1=1)) ORDER BY child_changed_at DESC, due_date, ref_no LIMIT 15 OFFSET 0
+  [1m[36mMonitoring Load (2.7ms)[0m  [1mSELECT `monitorings`.* FROM `monitorings` INNER JOIN `auditees` ON `auditees`.`id` = `monitorings`.`auditee_id` WHERE (aasm_state = 'draft' OR aasm_state = 'pending') AND ((1=1)) GROUP BY auditees.company_name ORDER BY child_changed_at DESC, due_date, ref_no[0m
+  [1m[35mAuditee Load (1.9ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1
+  [1m[36mAuditee Load (0.3ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 47) LIMIT 1[0m
+  [1m[35mAuditee Load (0.2ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1
+  [1m[36mAuditee Load (0.2ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mAuditee Load (0.3ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 43) LIMIT 1
+  [1m[36mComplianceOfficer Load (0.5ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 62) LIMIT 1
+  [1m[36mComplianceOfficer Load (0.6ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.7ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 16 and c.created_at > '2011-10-30 13:52:41'[0m
+DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:12)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:23)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:24)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:26)
+DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:27)
+  [1m[35mResolutionProposal Count (0.6ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 16 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 47) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 65) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 18 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 18 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 13 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 13 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 6 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 6 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 3 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 3 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.6ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 11 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.3ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 11 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.5ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 10 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 10 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 8 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 8 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 9 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.3ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 9 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 5 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 5 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mAuditee Load (0.3ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 29) LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 45) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 14 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 14 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 43) LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 59) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 15 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 15 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 62) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 22 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.3ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 22 and rp.updated_at > '2011-10-30 13:52:41'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
+  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 20 and c.created_at > '2011-10-30 13:52:41'[0m
+  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 20 and rp.updated_at > '2011-10-30 13:52:41'
+Rendered monitorings/_search_form.html.erb (1.7ms)
+Rendered monitorings/_index.html.erb (304.2ms)
+  [1m[36mClient Load (0.4ms)[0m  [1mSELECT `clients`.* FROM `clients` WHERE (`clients`.user_id = 41) LIMIT 1[0m
+  [1m[35mAuditee Load (0.4ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.user_id = 41) LIMIT 1
+  [1m[36mComplianceOfficer Load (0.3ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.user_id = 41) LIMIT 1[0m
+Rendered users/_user_bar.html.erb (22.2ms)
+Rendered monitorings/index.html.erb within layouts/application (367.5ms)
+Completed 200 OK in 13366ms (Views: 363.6ms | ActiveRecord: 26.6ms)
