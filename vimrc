@@ -27,6 +27,7 @@ filetype plugin indent on
 set noerrorbells
 set visualbell
 set vb t_vb=
+set cursorline
 "set autochdir " always switch to the current file directory
 set hlsearch
 "set textwidth=80
