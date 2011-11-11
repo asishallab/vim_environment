@@ -15,6 +15,7 @@ set backupdir=~/.vim/tmp/backup
 let mapleader = ","
 let maplocalleader = "-"
 map <Leader><Space> :copen <CR>
+set hidden
 syntax enable
 set tabstop=2
 set smarttab
@@ -207,6 +208,17 @@ map <LocalLeader>v  : DBGRprintExpand expand("<cWORD>")<CR> " print value under 
 map <LocalLeader>/  : DBGRcommand
 map <LocalLeader>5  : call DBGRrestart()<CR>
 map <LocalLeader>6  : call DBGRquit()<CR>
+
+" Define Function and Command to close all buffers except the active:
+if has('ruby')
+  fun! BufDelExcptActv()
+    ruby << RUBYCODE
+      VIM.command(":bd #{((0...VIM::Buffer.count).map {|i| VIM::Buffer[i].number } - [ VIM::Buffer.current.number ] ).join(' ')}")
+RUBYCODE
+  endfun
+
+  com -nargs=0 Bonly :call BufDelExcptActv()
+endif
 
 " Define Function Quick-Fix-List-Do:
 fun! QFDo(bang, command) 
