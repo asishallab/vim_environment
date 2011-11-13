@@ -10,6 +10,9 @@ call pathogen#helptags()
 " Backup and Swap-Directories
 set directory=~/.vim/tmp/swap
 set backupdir=~/.vim/tmp/backup
+" persistent undo:
+set undofile
+set undodir=~/.vim/tmp/undo
 
 " General settings
 let mapleader = ","
