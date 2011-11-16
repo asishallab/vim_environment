@@ -44,13 +44,13 @@ noremap j gj
 inoremap <A-k> <esc>g<up>i
 inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
-" colorscheme macvim
-colorscheme solarized
-set background=dark
 if has("mac")
   set gfn=Monaco:h13
+  colorscheme solarized
+  set background=dark
 else
   set gfn=Monospace\ 12
+  colorscheme macvim
 endif
 
 " Wraping:
