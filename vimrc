@@ -65,9 +65,9 @@ autocmd FileType eruby let b:surround_61 = "<%= \r %>"
 autocmd FileType eruby let b:surround_35 = "#{ \r }"
 autocmd FileType ruby let b:surround_35 = "#{ \r }"
 
-" Set an orange cursor in insert mode, and a red cursor otherwise.
-" Works at least for xterm and rxvt terminals.
-" Does not work for gnome terminal, konsole, xfce4-terminal.
+" Set an pipe cursor in insert mode, and a block cursor otherwise.  Works at
+" least for xterm and rxvt terminals.  Does not work for gnome terminal,
+" konsole, xfce4-terminal.
 if !has('gui_running') && &term =~ "xterm\\|rxvt"
   au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
