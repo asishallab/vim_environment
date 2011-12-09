@@ -75,7 +75,8 @@ if !has('gui_running') && &term =~ "xterm\\|rxvt"
 endif
 
 " Spellcheck:
-" set spell spelllang=en
+com Se set spell spelllang=en
+com Sd set spell spelllang=de
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
