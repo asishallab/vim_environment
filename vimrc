@@ -19,6 +19,7 @@ endif
 " General settings
 let mapleader = ","
 let maplocalleader = "-"
+set ls=2
 map <Leader><Space> :copen <CR>
 set hidden
 syntax enable

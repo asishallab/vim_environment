@@ -1,242 +1,28 @@
-Fast Debugger (ruby-debug-ide 0.4.16, ruby-debug-base 0.10.4) listens on 127.0.0.1:39767
-=> Booting Mongrel
-=> Rails 3.0.3 application starting in development on http://0.0.0.0:3000
-=> Call with -d to detach
-=> Ctrl-C to shutdown server
-In order to start the rufus/scheduler for sending out message-digests un-comment code in /Users/ah/projects/gsmMonitoring/config/initializers/mailing_scheduler.rb
-Otherwise add a cron-job calling the api: curl -d "apikey=6f896e70-4da5-012e-09a5-00264a1ce8b2" http://hostname/api/process_message_queue
-
-
-Started GET "/" for 127.0.0.1 at Fri Dec 09 11:19:28 +0100 2011
-  Processing by SessionsController#new as HTML
-Rendered users/_user_bar.html.erb (2.2ms)
-Rendered sessions/new.html.erb within layouts/application (22.4ms)
-Completed 200 OK in 86ms (Views: 84.9ms | ActiveRecord: 0.0ms)
-
-
-Started POST "/session" for 127.0.0.1 at Fri Dec 09 11:19:33 +0100 2011
-  Processing by SessionsController#create as HTML
-  Parameters: {"commit"=>"Log in", "authenticity_token"=>"lsHbAiZmlwWMONg4f+59HZD/L1QMjRw/gflpM68BWoM=", "utf8"=>"\342\234\223", "password"=>"[FILTERED]", "login"=>"co1"}
-  [1m[36mSQL (27.8ms)[0m  [1mdescribe `roles_users`[0m
-  [1m[35mSQL (0.9ms)[0m  SHOW TABLES
-  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`login` = 'co1') LIMIT 1[0m
-  [1m[35mSQL (0.2ms)[0m  BEGIN
-DEPRECATION WARNING: save(false) is deprecated, please give save(:validate => false) instead. (called from forget_me at /Users/ah/projects/gsmMonitoring/vendor/plugins/restful-authentication/rails/../lib/authentication/by_cookie_token.rb:58)
-  [1m[36mSQL (0.1ms)[0m  [1mCOMMIT[0m
-  [1m[35mAuditee Load (0.5ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.user_id = 41) LIMIT 1
-  [1m[36mClient Load (17.4ms)[0m  [1mSELECT `clients`.* FROM `clients` WHERE (`clients`.user_id = 41) LIMIT 1[0m
-  [1m[35mPartner Load (13.3ms)[0m  SELECT `partners`.* FROM `partners` WHERE (`partners`.user_id = 41) LIMIT 1
-Default redirecting for user with ID '41'
-Redirected to http://localhost:3000/monitorings
-Completed 302 Found in 382ms
-{"scope":["draft_or_pending"],"joins":["auditee"],"order":["child_changed_at DESC, due_date, ref_no"],"where":{"monitorings.compliance_officer_id like :arg":"26"}}
-
-
-Started GET "/monitorings" for 127.0.0.1 at Fri Dec 09 11:19:33 +0100 2011
-  Processing by MonitoringsController#index as HTML
-  [1m[36mSQL (1.6ms)[0m  [1mdescribe `roles_users`[0m
-  [1m[35mUser Load (0.6ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mSQL (1.7ms)[0m  [1mdescribe `roles_users`[0m
-  [1m[35mRole Load (2.0ms)[0m  SELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 41 )
-  [1m[36mComplianceOfficer Load (10.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.user_id = 41) LIMIT 1[0m
-DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:5)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:14)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:15)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:16)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:17)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:18)
-  [1m[35mMonitoring Load (0.7ms)[0m  SELECT `monitorings`.* FROM `monitorings` INNER JOIN `auditees` ON `auditees`.`id` = `monitorings`.`auditee_id` WHERE (aasm_state = 'draft' OR aasm_state = 'pending') AND (monitorings.compliance_officer_id like '26') AND ((1=1)) ORDER BY child_changed_at DESC, due_date, ref_no LIMIT 15 OFFSET 0
-  [1m[36mMonitoring Load (3.0ms)[0m  [1mSELECT `monitorings`.* FROM `monitorings` INNER JOIN `auditees` ON `auditees`.`id` = `monitorings`.`auditee_id` WHERE (aasm_state = 'draft' OR aasm_state = 'pending') AND (monitorings.compliance_officer_id like '26') AND ((1=1)) GROUP BY auditees.company_name ORDER BY child_changed_at DESC, due_date, ref_no[0m
-  [1m[35mAuditee Load (0.7ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1
-  [1m[36mAuditee Load (0.3ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
-  [1m[35mAuditee Load (0.2ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 43) LIMIT 1
-  [1m[36mAuditee Load (0.2ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1[0m
-  [1m[35mComplianceOfficer Load (0.3ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers`
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComplianceOfficer Load (2.1ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1
-  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (74.3ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 11 and c.created_at > '2011-12-04 10:19:34'
-DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:12)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:22)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:23)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:25)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:26)
-  [1m[36mResolutionProposal Count (0.6ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 11 and rp.updated_at > '2011-12-04 10:19:34'[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (0.6ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 8 and c.created_at > '2011-12-04 10:19:34'
-  [1m[36mResolutionProposal Count (0.3ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 8 and rp.updated_at > '2011-12-04 10:19:34'[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1
-  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (0.5ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 9 and c.created_at > '2011-12-04 10:19:34'
-  [1m[36mResolutionProposal Count (0.3ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 9 and rp.updated_at > '2011-12-04 10:19:34'[0m
-  [1m[35mAuditee Load (0.4ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 29) LIMIT 1
-  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 45) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (0.4ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 14 and c.created_at > '2011-12-04 10:19:34'
-  [1m[36mResolutionProposal Count (0.3ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 14 and rp.updated_at > '2011-12-04 10:19:34'[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 43) LIMIT 1
-  [1m[36mUser Load (0.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 59) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (0.4ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 15 and c.created_at > '2011-12-04 10:19:34'
-  [1m[36mResolutionProposal Count (0.3ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 15 and rp.updated_at > '2011-12-04 10:19:34'[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1
-  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 62) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (0.5ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 22 and c.created_at > '2011-12-04 10:19:34'
-  [1m[36mResolutionProposal Count (0.3ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 22 and rp.updated_at > '2011-12-04 10:19:34'[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mComment Count (0.5ms)[0m  select count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 20 and c.created_at > '2011-12-04 10:19:34'
-  [1m[36mResolutionProposal Count (0.3ms)[0m  [1mselect count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 20 and rp.updated_at > '2011-12-04 10:19:34'[0m
-Rendered monitorings/_search_form.html.erb (2.6ms)
-Rendered monitorings/_index.html.erb (486.6ms)
-  [1m[35mClient Load (0.4ms)[0m  SELECT `clients`.* FROM `clients` WHERE (`clients`.user_id = 41) LIMIT 1
-  [1m[36mAuditee Load (0.4ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.user_id = 41) LIMIT 1[0m
-Rendered users/_user_bar.html.erb (21.5ms)
-Rendered monitorings/index.html.erb within layouts/application (545.2ms)
-Completed 200 OK in 948ms (Views: 477.3ms | ActiveRecord: 105.9ms)
-
-
-Started GET "/monitorings/new" for 127.0.0.1 at Fri Dec 09 11:19:38 +0100 2011
-  Processing by MonitoringsController#new as HTML
-  [1m[35mSQL (1.5ms)[0m  describe `roles_users`
-  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mSQL (2.9ms)[0m  describe `roles_users`
-  [1m[36mRole Load (0.4ms)[0m  [1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 41 )[0m
-DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:5)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:14)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:15)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:16)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:17)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:18)
-  [1m[35mAuditee Load (1.0ms)[0m  SELECT `auditees`.`id` AS t0_r0, `auditees`.`user_id` AS t0_r1, `auditees`.`client_id` AS t0_r2, `auditees`.`company_name` AS t0_r3, `auditees`.`created_at` AS t0_r4, `auditees`.`updated_at` AS t0_r5, `auditees`.`partner_id` AS t0_r6, `users`.`id` AS t1_r0, `users`.`login` AS t1_r1, `users`.`name` AS t1_r2, `users`.`email` AS t1_r3, `users`.`crypted_password` AS t1_r4, `users`.`salt` AS t1_r5, `users`.`created_at` AS t1_r6, `users`.`updated_at` AS t1_r7, `users`.`remember_token` AS t1_r8, `users`.`remember_token_expires_at` AS t1_r9, `users`.`cleartext_password` AS t1_r10, `users`.`salutation` AS t1_r11, `users`.`account_info_sent` AS t1_r12 FROM `auditees` LEFT OUTER JOIN `users` ON `users`.`id` = `auditees`.`user_id` ORDER BY company_name,users.login
-  [1m[36mComplianceOfficer Load (0.4ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers`[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-Rendered monitorings/_form.html.erb (189.2ms)
-  [1m[36mClient Load (0.5ms)[0m  [1mSELECT `clients`.* FROM `clients` WHERE (`clients`.user_id = 41) LIMIT 1[0m
-  [1m[35mAuditee Load (0.4ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.user_id = 41) LIMIT 1
-  [1m[36mComplianceOfficer Load (0.3ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.user_id = 41) LIMIT 1[0m
-Rendered users/_user_bar.html.erb (22.9ms)
-Rendered monitorings/new.html.erb within layouts/application (250.4ms)
-Completed 200 OK in 407ms (Views: 288.6ms | ActiveRecord: 8.1ms)
-
-
-Started POST "/monitorings" for 127.0.0.1 at Fri Dec 09 11:19:54 +0100 2011
-  Processing by MonitoringsController#create as HTML
-  Parameters: {"commit"=>"Create", "authenticity_token"=>"lsHbAiZmlwWMONg4f+59HZD/L1QMjRw/gflpM68BWoM=", "utf8"=>"\342\234\223", "monitoring"=>{"auditee_id"=>"", "compliance_officer_id"=>"", "remarks"=>"Bala poco\r\n", "audit_ref"=>"Oveja", "notice_level"=>"3", "due_date"=>"23-12-2011"}}
-  [1m[35mSQL (1.5ms)[0m  describe `roles_users`
-  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mSQL (1.5ms)[0m  describe `roles_users`
-  [1m[36mRole Load (3.0ms)[0m  [1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 41 )[0m
-DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:5)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:14)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:15)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:16)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:17)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:18)
-  [1m[35mSQL (0.2ms)[0m  BEGIN
-  [1m[36mSQL (0.2ms)[0m  [1mROLLBACK[0m
-  [1m[35mAuditee Load (0.9ms)[0m  SELECT `auditees`.`id` AS t0_r0, `auditees`.`user_id` AS t0_r1, `auditees`.`client_id` AS t0_r2, `auditees`.`company_name` AS t0_r3, `auditees`.`created_at` AS t0_r4, `auditees`.`updated_at` AS t0_r5, `auditees`.`partner_id` AS t0_r6, `users`.`id` AS t1_r0, `users`.`login` AS t1_r1, `users`.`name` AS t1_r2, `users`.`email` AS t1_r3, `users`.`crypted_password` AS t1_r4, `users`.`salt` AS t1_r5, `users`.`created_at` AS t1_r6, `users`.`updated_at` AS t1_r7, `users`.`remember_token` AS t1_r8, `users`.`remember_token_expires_at` AS t1_r9, `users`.`cleartext_password` AS t1_r10, `users`.`salutation` AS t1_r11, `users`.`account_info_sent` AS t1_r12 FROM `auditees` LEFT OUTER JOIN `users` ON `users`.`id` = `auditees`.`user_id` ORDER BY company_name,users.login
-  [1m[36mComplianceOfficer Load (0.5ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers`[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-Rendered monitorings/_form.html.erb (210.5ms)
-  [1m[36mClient Load (0.4ms)[0m  [1mSELECT `clients`.* FROM `clients` WHERE (`clients`.user_id = 41) LIMIT 1[0m
-  [1m[35mAuditee Load (0.4ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.user_id = 41) LIMIT 1
-  [1m[36mComplianceOfficer Load (0.3ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.user_id = 41) LIMIT 1[0m
-Rendered users/_user_bar.html.erb (22.7ms)
-Rendered monitorings/new.html.erb within layouts/application (254.0ms)
-Completed 200 OK in 397ms (Views: 260.1ms | ActiveRecord: 9.3ms)
-{"scope":["draft_or_pending"],"joins":["auditee"],"order":["child_changed_at DESC, due_date, ref_no"],"where":{"monitorings.compliance_officer_id like :arg":"26"}}
-
-
-Started GET "/monitorings" for 127.0.0.1 at Fri Dec 09 11:22:06 +0100 2011
-  Processing by MonitoringsController#index as HTML
-  [1m[35mSQL (3.1ms)[0m  describe `roles_users`
-  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1[0m
-  [1m[35mSQL (1.5ms)[0m  describe `roles_users`
-  [1m[36mRole Load (0.4ms)[0m  [1mSELECT * FROM `roles` INNER JOIN `roles_users` ON `roles`.id = `roles_users`.role_id WHERE (`roles_users`.user_id = 41 )[0m
-  [1m[35mComplianceOfficer Load (0.4ms)[0m  SELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.user_id = 41) LIMIT 1
-DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:5)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:14)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:15)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:16)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:17)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/monitoring.rb:18)
-  [1m[36mMonitoring Load (0.5ms)[0m  [1mSELECT `monitorings`.* FROM `monitorings` INNER JOIN `auditees` ON `auditees`.`id` = `monitorings`.`auditee_id` WHERE (aasm_state = 'draft' OR aasm_state = 'pending') AND (monitorings.compliance_officer_id like '26') AND ((1=1)) ORDER BY child_changed_at DESC, due_date, ref_no LIMIT 15 OFFSET 0[0m
-  [1m[35mMonitoring Load (2.9ms)[0m  SELECT `monitorings`.* FROM `monitorings` INNER JOIN `auditees` ON `auditees`.`id` = `monitorings`.`auditee_id` WHERE (aasm_state = 'draft' OR aasm_state = 'pending') AND (monitorings.compliance_officer_id like '26') AND ((1=1)) GROUP BY auditees.company_name ORDER BY child_changed_at DESC, due_date, ref_no
-  [1m[36mAuditee Load (2.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1[0m
-  [1m[35mAuditee Load (0.4ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1
-  [1m[36mAuditee Load (0.3ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 43) LIMIT 1[0m
-  [1m[35mAuditee Load (0.2ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1
-  [1m[36mComplianceOfficer Load (0.4ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers`[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComplianceOfficer Load (0.8ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1[0m
-  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.6ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 11 and c.created_at > '2011-12-04 10:22:06'[0m
-DEPRECATION WARNING: before_validation_on_create is deprecated. Please use before_validation(arguments, :on => :create. (called from include at /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:12)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:22)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:23)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:25)
-DEPRECATION WARNING: Base.named_scope has been deprecated, please use Base.scope instead. (called from /Users/ah/projects/gsmMonitoring/app/models/resolution_proposal.rb:26)
-  [1m[35mResolutionProposal Count (0.6ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 11 and rp.updated_at > '2011-12-04 10:22:06'
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 21) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 36) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.5ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 8 and c.created_at > '2011-12-04 10:22:06'[0m
-  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 8 and rp.updated_at > '2011-12-04 10:22:06'
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
-  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 9 and c.created_at > '2011-12-04 10:22:06'[0m
-  [1m[35mResolutionProposal Count (0.5ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 9 and rp.updated_at > '2011-12-04 10:22:06'
-  [1m[36mAuditee Load (0.4ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 29) LIMIT 1[0m
-  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 45) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.4ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 14 and c.created_at > '2011-12-04 10:22:06'[0m
-  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 14 and rp.updated_at > '2011-12-04 10:22:06'
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 43) LIMIT 1[0m
-  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 59) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.5ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 15 and c.created_at > '2011-12-04 10:22:06'[0m
-  [1m[35mResolutionProposal Count (0.3ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 15 and rp.updated_at > '2011-12-04 10:22:06'
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 45) LIMIT 1[0m
-  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 62) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.5ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 22 and c.created_at > '2011-12-04 10:22:06'[0m
-  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 22 and rp.updated_at > '2011-12-04 10:22:06'
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `auditees`.* FROM `auditees` WHERE (`auditees`.`id` = 20) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 35) LIMIT 1
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `compliance_officers`.* FROM `compliance_officers` WHERE (`compliance_officers`.`id` = 26) LIMIT 1[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` = 41) LIMIT 1
-  [1m[36mComment Count (0.5ms)[0m  [1mselect count(c.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id left join comments c on rp.id = c.resolution_proposal_id where m.id = 20 and c.created_at > '2011-12-04 10:22:06'[0m
-  [1m[35mResolutionProposal Count (0.2ms)[0m  select count(rp.id) from monitorings m left join non_conformities nc on m.id = nc.monitoring_id left join resolution_proposals rp on nc.id = rp.non_conformity_id where m.id = 20 and rp.updated_at > '2011-12-04 10:22:06'
-Rendered monitorings/_search_form.html.erb (1.6ms)
-Rendered monitorings/_index.html.erb (268.1ms)
-  [1m[36mClient Load (0.5ms)[0m  [1mSELECT `clients`.* FROM `clients` WHERE (`clients`.user_id = 41) LIMIT 1[0m
-  [1m[35mAuditee Load (0.8ms)[0m  SELECT `auditees`.* FROM `auditees` WHERE (`auditees`.user_id = 41) LIMIT 1
-Rendered users/_user_bar.html.erb (19.4ms)
-Rendered monitorings/index.html.erb within layouts/application (317.3ms)
-Completed 200 OK in 633ms (Views: 316.8ms | ActiveRecord: 22.8ms)
+Fast Debugger (ruby-debug-ide 0.4.9) listens on :39767
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:572:in `rescue in load_spec_files'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:570:in `load_spec_files'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:385:in `local_specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:555:in `specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:147:in `block in resolve'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:145:in `each'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:145:in `resolve'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:90:in `specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:135:in `specs_for'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:124:in `requested_specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/environment.rb:23:in `requested_specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/runtime.rb:11:in `setup'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler.rb:110:in `setup'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/setup.rb:17:in `<top (required)>'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:59:in `require'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:59:in `rescue in require'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:35:in `require'
+	/Users/ah/projects/regionsFinestShop/config/boot.rb:6:in `<top (required)>'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+	/Users/ah/projects/regionsFinestShop/script/rails:5:in `<top (required)>'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/ruby-debug-ide19-0.4.12/lib/ruby-debug-ide.rb:123:in `debug_load'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/ruby-debug-ide19-0.4.12/lib/ruby-debug-ide.rb:123:in `debug_program'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/ruby-debug-ide19-0.4.12/bin/rdebug-ide:87:in `<top (required)>'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/bin/rdebug-ide:19:in `load'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/bin/rdebug-ide:19:in `<main>'
+Uncaught exception: git://github.com/spree/spree_i18n.git (at master) is not checked out. Please run `bundle install`
