@@ -19,6 +19,7 @@ endif
 " General settings
 let mapleader = ","
 let maplocalleader = "-"
+set ls=2
 map <Leader><Space> :copen <CR>
 set hidden
 syntax enable
@@ -75,7 +76,8 @@ if !has('gui_running') && &term =~ "xterm\\|rxvt"
 endif
 
 " Spellcheck:
-" set spell spelllang=en
+com Se set spell spelllang=en
+com Sd set spell spelllang=de
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
