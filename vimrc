@@ -49,7 +49,8 @@ inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
 if has("mac")
   set gfn=Monaco:h13
-  colorscheme solarized
+  " colorscheme solarized
+  colorscheme jellybeans
   set background=dark
 else
   set gfn=Monospace\ 12

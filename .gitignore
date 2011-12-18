@@ -1,3 +1,4 @@
 vim-ruby-debugger/.gitattributes
 vim-ruby-debugger/src/
 vim-ruby-debugger/tmp/*
+syntastic/
