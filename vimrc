@@ -54,7 +54,11 @@ if has("mac")
   set background=dark
 else
   set gfn=Monospace\ 12
-  colorscheme macvim
+  if !has('gui_running')
+    colorscheme macvim
+  else
+    colorscheme jellybeans
+  endif
 endif
 
 " Wraping:
