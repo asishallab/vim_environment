@@ -1,0 +1,4 @@
+*) Optimization: when there's many projects available, opening new file was too slow. Now this is solved.
+*) Please download latest Vimprj script (vimscript #3872), latest version is 1.06 now.
+*) Yet another dependency added: script-library DfrankUtil (vimscript #3884). Sorry if you are bored by these dependencies, but now i really need to put my common code in one place.
+
