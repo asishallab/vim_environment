@@ -1,6 +1,5 @@
 set nocompatible " Vim not vi
 
-" Pathogen enables usage of bundle-directory.
 " The following is needed on some linux distros.
 " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 filetype off 
@@ -60,6 +59,12 @@ else
     colorscheme jellybeans
   endif
 endif
+
+" Make t,T,f and F searches exceed line-breaks 
+" noremap <silent> <expr> t '/'.nr2char(getchar())."/e-1<CR> <bar> :nohl <CR>"
+" noremap <silent> <expr> T '?'.nr2char(getchar())."?b+1<CR> <bar> :nohl <CR>"
+" noremap <silent> <expr> f '/'.nr2char(getchar())."/e<CR> <bar> :nohl <CR>"
+" noremap <silent> <expr> F '?'.nr2char(getchar())."?b<CR> <bar> :nohl <CR>"
 
 " Wraping:
 command! -nargs=* Wrap set wrap linebreak nolist
@@ -252,8 +257,8 @@ com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>)
 " [PROJECTS_PARENT filter="**/*.rb **/*.erb **/*.rake"]
 " ~/projects
 " ------------------------------------------------------------------------------- 
-autocmd Filetype ruby let g:indexer_ctagsCommandLineOptions='--langmap="ruby:+.rake.builder.rjs" --languages=-javascript'
-autocmd Filetype java let g:indexer_ctagsCommandLineOptions='--language-force=java'
+" autocmd Filetype ruby let g:indexer_ctagsCommandLineOptions='--langmap="ruby:+.rake.builder.rjs" --languages=-javascript'
+" autocmd Filetype java let g:indexer_ctagsCommandLineOptions='--language-force=java'
 
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
