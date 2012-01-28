@@ -1,0 +1,33 @@
+Fast Debugger (ruby-debug-ide 0.4.9) listens on :39767
+<<<<<<< HEAD
+Usage:
+ruby filter_fasta.rb in.fasta filter_out_fasta_header_regex out.fasta
+=======
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:572:in `rescue in load_spec_files'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:570:in `load_spec_files'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:385:in `local_specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/source.rb:555:in `specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:147:in `block in resolve'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:145:in `each'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:145:in `resolve'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:90:in `specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:135:in `specs_for'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/definition.rb:124:in `requested_specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/environment.rb:23:in `requested_specs'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/runtime.rb:11:in `setup'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler.rb:110:in `setup'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/bundler-1.0.21/lib/bundler/setup.rb:17:in `<top (required)>'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:59:in `require'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:59:in `rescue in require'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:35:in `require'
+	/Users/ah/projects/regionsFinestShop/config/boot.rb:6:in `<top (required)>'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+	/Users/ah/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/site_ruby/1.9.1/rubygems/custom_require.rb:36:in `require'
+	/Users/ah/projects/regionsFinestShop/script/rails:5:in `<top (required)>'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/ruby-debug-ide19-0.4.12/lib/ruby-debug-ide.rb:123:in `debug_load'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/ruby-debug-ide19-0.4.12/lib/ruby-debug-ide.rb:123:in `debug_program'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/gems/ruby-debug-ide19-0.4.12/bin/rdebug-ide:87:in `<top (required)>'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/bin/rdebug-ide:19:in `load'
+	/Users/ah/.rvm/gems/ruby-1.9.2-p180@regionsFinestShop/bin/rdebug-ide:19:in `<main>'
+Uncaught exception: git://github.com/spree/spree_i18n.git (at master) is not checked out. Please run `bundle install`
+>>>>>>> origin/master
