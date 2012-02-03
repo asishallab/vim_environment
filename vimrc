@@ -91,16 +91,17 @@ com Sd set spell spelllang=de
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 " Enable Tag-Completion with Supertab
-function MyTagContext()
-  if !empty(&tags)
-    return "\<C-x>\<C-]>"
-  endif
-  " no return will result in the evaluation of the next
-  " configured context
-endfunction
-let g:SuperTabCompletionContexts =
-      \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+" function MyTagContext()
+"   if !empty(&tags)
+"     return "\\<C-x>\\<C-]>"
+"   endif
+"   " no return will result in the evaluation of the next
+"   " configured context
+" endfunction
+" let g:SuperTabCompletionContexts =
+"       \\ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 
 " acp - with snipmate and ctags:
 let g:acp_behaviorSnipmateLength = 1
