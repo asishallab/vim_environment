@@ -28,3 +28,6 @@
 [submodule "syntastic"]
 	path = syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "snipmate.vim"]
+	path = snipmate.vim
+	url = git://github.com/msanders/snipmate.vim.git
