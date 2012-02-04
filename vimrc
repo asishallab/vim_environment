@@ -91,7 +91,7 @@ com Sd set spell spelllang=de
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 " Enable Tag-Completion with Supertab
 " function MyTagContext()
 "   if !empty(&tags)
