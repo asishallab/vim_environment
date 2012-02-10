@@ -196,22 +196,13 @@ let g:hasrmenu = 0
 let vimrplugin_never_unmake_menu = 1
 " let vimrplugin_r_path = "/opt/share/local/development/R/R-2.11.1/bin"
 
-" Command-T
-let g:CommandTMatchWindowAtTop=1
-map <Leader># :CommandT <CR>
-map <Leader>+ :CommandTBuffer <CR>
-" Fuzzy Finder:
+" CtrlP:
 map <Leader>, :CtrlP<CR>
 map <Leader>. :CtrlPMRUFiles<CR>
-" Flush CommandT and FuzzyFinder Cashes
-map <Leader>- 
-      \:silent :CommandTFlush <CR> <bar>
-      \:silent :FufRenewCache <CR>
-" CtrlP:
 let g:ctrlp_match_window_bottom=0
-let g:ctrlp_mruf_last_entered=1
 let g:ctrlp_match_window_reversed=0
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+let g:ctrlp_mruf_last_entered=1
+" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':
