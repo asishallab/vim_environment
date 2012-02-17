@@ -104,7 +104,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "       \\ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 
 " acp - with snipmate and ctags:
-let g:acp_behaviorSnipmateLength = 1
+" let g:acp_behaviorSnipmateLength = 1
 let g:acp_ignorecaseOption = 1
 let g:acp_behaviorKeywordLength = 1
 let g:acp_completeOption = '.,w,b,u,t,i'
@@ -198,7 +198,8 @@ let vimrplugin_never_unmake_menu = 1
 
 " CtrlP:
 map <Leader>, :CtrlP<CR>
-map <Leader>. :CtrlPMRUFiles<CR>
+map <Leader>. :CtrlPBuffer<CR>
+map <Leader>- :CtrlPMRUFiles<CR>
 let g:ctrlp_match_window_bottom=0
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_last_entered=1

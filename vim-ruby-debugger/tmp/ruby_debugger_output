@@ -1,517 +1,384 @@
-Fast Debugger (ruby-debug-ide 0.4.9) listens on :39767
-=> Booting WEBrick
-=> Rails 3.1.3 application starting in development on http://0.0.0.0:3000
+Fast Debugger (ruby-debug-ide 0.4.16, ruby-debug-base 0.10.4) listens on 127.0.0.1:39767
+WARNING: Nokogiri was built against LibXML version 2.7.8, but has dynamically loaded 2.7.3
+=> Booting Mongrel
+=> Rails 3.0.3 application starting in development on http://0.0.0.0:3000
 => Call with -d to detach
 => Ctrl-C to shutdown server
-[DEPRECATION WARNING] Nested I18n namespace lookup under "activerecord.attributes.spree/order" is no longer supported
-[2012-02-03 17:08:48] INFO  WEBrick 1.3.1
-[2012-02-03 17:08:48] INFO  ruby 1.9.2 (2011-07-09) [x86_64-darwin11.1.0]
-[2012-02-03 17:08:48] INFO  WEBrick::HTTPServer#start: pid=10853 port=3000
 
 
-Started GET "/" for 127.0.0.1 at 2012-02-03 17:09:05 +0100
-  Processing by Spree::HomeController#index as HTML
-  [1m[35mSpree::Preference Load (0.4ms)[0m  SELECT `spree_preferences`.* FROM `spree_preferences` 
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[36mSpree::Property Load (0.4ms)[0m  [1mSELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1[0m
-  [1m[35mSpree::Taxonomy Load (0.5ms)[0m  SELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL
-  [1m[36mSpree::Taxon Load (0.6ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)[0m
-  [1m[35mSpree::Taxon Load (0.7ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_taxonomies.html.erb (627.7ms)
-  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:09:06') LIMIT 12 OFFSET 0) subquery_for_count [0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:09:06') LIMIT 12 OFFSET 0) subquery_for_count 
-  [1m[36mSpree::Product Load (0.9ms)[0m  [1mSELECT `spree_products`.* FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:09:06') LIMIT 12 OFFSET 0[0m
-  [1m[35mSpree::Image Load (1.2ms)[0m  SELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_type` = 'Spree::Product' AND `spree_assets`.`viewable_id` IN (187438981, 248786582, 459084718, 569012001, 706676762, 723959550, 1025786064, 1035865702, 1060500592) ORDER BY position
-  [1m[36mSpree::Variant Load (1.0ms)[0m  [1mSELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` IN (187438981, 248786582, 459084718, 569012001, 706676762, 723959550, 1025786064, 1035865702, 1060500592) AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL)[0m
-  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:09:06')
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_products.html.erb (293.9ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/home/index.html.erb within /spree/layouts/spree_application (1015.6ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_head.html.erb (3.8ms)
-[1;32mDeface:[0m 1 overrides found for 'spree/shared/_nav_bar'
-[1;32mDeface:[0m 'auth_shared_login_bar' matched 1 times with 'li#search-bar'
-  [1m[36mSpree::Taxon Load (0.7ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IS NULL ORDER BY `lft`[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_search.html.erb (5.1ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_nav_bar.html.erb (11.9ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_store_menu.html.erb (3.0ms)
-  [1m[35mSpree::Tracker Load (0.3ms)[0m  SELECT `spree_trackers`.* FROM `spree_trackers` WHERE `spree_trackers`.`active` = 1 AND `spree_trackers`.`environment` = 'development' LIMIT 1
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_google_analytics.html.erb (137.7ms)
-Completed 200 OK in 1776ms (Views: 1439.7ms | ActiveRecord: 71.9ms)
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:09:08 +0100
-Served asset /images/select_arrow.gif - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/images/select_arrow.gif"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
-[DEPRECATION] `hook` is deprecated
-[DEPRECATION] `hook` is deprecated
-
-
-Started GET "/" for 127.0.0.1 at 2012-02-03 17:09:37 +0100
-  Processing by HomeController#index as HTML
-  [1m[36mSpree::Preference Load (0.5ms)[0m  [1mSELECT `spree_preferences`.* FROM `spree_preferences` [0m
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[35mSpree::Property Load (0.3ms)[0m  SELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1
-  [1m[36mSpree::Taxonomy Load (0.8ms)[0m  [1mSELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL[0m
-  [1m[35mSpree::Taxon Load (0.5ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)
-  [1m[36mSpree::Taxon Load (1.1ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`[0m
-Rendered shared/_taxonomies.html.erb (251.4ms)
-Rendered home/index.html.erb within /spree/layouts/spree_application (254.2ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_head.html.erb (3.5ms)
-[1;32mDeface:[0m 1 overrides found for 'spree/shared/_nav_bar'
-[1;32mDeface:[0m 'auth_shared_login_bar' matched 1 times with 'li#search-bar'
-  [1m[35mSpree::Taxon Load (0.7ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IS NULL ORDER BY `lft`
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_search.html.erb (4.5ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_nav_bar.html.erb (10.1ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_store_menu.html.erb (2.9ms)
-  [1m[36mSpree::Tracker Load (0.3ms)[0m  [1mSELECT `spree_trackers`.* FROM `spree_trackers` WHERE `spree_trackers`.`active` = 1 AND `spree_trackers`.`environment` = 'development' LIMIT 1[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_google_analytics.html.erb (7.9ms)
-Completed 200 OK in 561ms (Views: 302.7ms | ActiveRecord: 78.7ms)
-
-
-Started GET "/assets/jquery.hoverIntent.minified" for 127.0.0.1 at 2012-02-03 17:09:42 +0100
-Served asset /jquery.hoverIntent.minified - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/jquery.hoverIntent.minified"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
-
-
-Started GET "/assets/vertical_megamenu.css" for 127.0.0.1 at 2012-02-03 17:09:43 +0100
-Served asset /vertical_megamenu.css - 404 Not Found (14ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/vertical_megamenu.css"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/assets/jquery.dcverticalmegamenu.1.3" for 127.0.0.1 at 2012-02-03 17:09:43 +0100
-Served asset /jquery.dcverticalmegamenu.1.3 - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/jquery.dcverticalmegamenu.1.3"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:09:44 +0100
-Served asset /images/select_arrow.gif - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/images/select_arrow.gif"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/images/static/rf_wine_brandy_1786_sRGB.png" for 127.0.0.1 at 2012-02-03 17:09:44 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_brandy_1786_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/images/static/rf_wine_red_1815_sRGB.png" for 127.0.0.1 at 2012-02-03 17:09:44 +0100
-
-ActiveRecord::ConnectionTimeoutError (could not obtain a database connection within 5 seconds.  The max pool size is currently 5; consider increasing it.):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.7ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (135.8ms)
-
-
-Started GET "/images/static/rf_wine_white_1881_sRGB.png" for 127.0.0.1 at 2012-02-03 17:09:54 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_white_1881_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/images/static/rf_home_titel.jpg" for 127.0.0.1 at 2012-02-03 17:09:56 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_home_titel.jpg"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/" for 127.0.0.1 at 2012-02-03 17:10:32 +0100
-  Processing by Spree::HomeController#index as HTML
-  [1m[35mSpree::Preference Load (0.5ms)[0m  SELECT `spree_preferences`.* FROM `spree_preferences` 
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[36mSpree::Property Load (0.4ms)[0m  [1mSELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1[0m
-  [1m[35mSpree::Taxonomy Load (0.5ms)[0m  SELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL
-  [1m[36mSpree::Taxon Load (0.6ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)[0m
-  [1m[35mSpree::Taxon Load (0.8ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_taxonomies.html.erb (370.3ms)
-  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:10:37') LIMIT 12 OFFSET 0) subquery_for_count [0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:10:37') LIMIT 12 OFFSET 0) subquery_for_count 
-  [1m[36mSpree::Product Load (1.0ms)[0m  [1mSELECT `spree_products`.* FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:10:37') LIMIT 12 OFFSET 0[0m
-  [1m[35mSpree::Image Load (1.1ms)[0m  SELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_type` = 'Spree::Product' AND `spree_assets`.`viewable_id` IN (187438981, 248786582, 459084718, 569012001, 706676762, 723959550, 1025786064, 1035865702, 1060500592) ORDER BY position
-  [1m[36mSpree::Variant Load (0.7ms)[0m  [1mSELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` IN (187438981, 248786582, 459084718, 569012001, 706676762, 723959550, 1025786064, 1035865702, 1060500592) AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL)[0m
-  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `spree_products` WHERE `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:10:37')
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_products.html.erb (265.0ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/home/index.html.erb within /spree/layouts/spree_application (643.1ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_head.html.erb (3.1ms)
-[1;32mDeface:[0m 1 overrides found for 'spree/shared/_nav_bar'
-[1;32mDeface:[0m 'auth_shared_login_bar' matched 1 times with 'li#search-bar'
-  [1m[36mSpree::Taxon Load (0.5ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IS NULL ORDER BY `lft`[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_search.html.erb (4.7ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_nav_bar.html.erb (11.0ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_store_menu.html.erb (2.3ms)
-  [1m[35mSpree::Tracker Load (0.3ms)[0m  SELECT `spree_trackers`.* FROM `spree_trackers` WHERE `spree_trackers`.`active` = 1 AND `spree_trackers`.`environment` = 'development' LIMIT 1
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_google_analytics.html.erb (164.9ms)
-Completed 200 OK in 966ms (Views: 684.2ms | ActiveRecord: 244.6ms)
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:10:38 +0100
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:10:38 +0100
-Served asset /images/select_arrow.gif - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/images/select_arrow.gif"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-[DEPRECATION] `hook` is deprecated
-[DEPRECATION] `hook` is deprecated
-
-
-Started GET "/" for 127.0.0.1 at 2012-02-03 17:10:47 +0100
-  Processing by HomeController#index as HTML
-  [1m[36mSpree::Preference Load (0.4ms)[0m  [1mSELECT `spree_preferences`.* FROM `spree_preferences` [0m
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[35mSpree::Property Load (0.3ms)[0m  SELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1
-  [1m[36mSpree::Taxonomy Load (0.5ms)[0m  [1mSELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL[0m
-  [1m[35mSpree::Taxon Load (0.5ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)
-  [1m[36mSpree::Taxon Load (0.7ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`[0m
-Rendered shared/_taxonomies.html.erb (269.4ms)
-Rendered home/index.html.erb within /spree/layouts/spree_application (271.1ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_head.html.erb (3.8ms)
-[1;32mDeface:[0m 1 overrides found for 'spree/shared/_nav_bar'
-[1;32mDeface:[0m 'auth_shared_login_bar' matched 1 times with 'li#search-bar'
-  [1m[35mSpree::Taxon Load (0.6ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IS NULL ORDER BY `lft`
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_search.html.erb (120.5ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_nav_bar.html.erb (127.4ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_store_menu.html.erb (3.6ms)
-  [1m[36mSpree::Tracker Load (0.3ms)[0m  [1mSELECT `spree_trackers`.* FROM `spree_trackers` WHERE `spree_trackers`.`active` = 1 AND `spree_trackers`.`environment` = 'development' LIMIT 1[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_google_analytics.html.erb (8.7ms)
-Completed 200 OK in 547ms (Views: 429.4ms | ActiveRecord: 86.3ms)
-
-
-Started GET "/assets/jquery.hoverIntent.minified" for 127.0.0.1 at 2012-02-03 17:10:53 +0100
-
-
-Started GET "/assets/jquery.hoverIntent.minified" for 127.0.0.1 at 2012-02-03 17:10:53 +0100
-Served asset /jquery.hoverIntent.minified - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/jquery.hoverIntent.minified"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/assets/jquery.dcverticalmegamenu.1.3" for 127.0.0.1 at 2012-02-03 17:10:55 +0100
-Served asset /jquery.dcverticalmegamenu.1.3 - 404 Not Found (14ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/jquery.dcverticalmegamenu.1.3"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/assets/vertical_megamenu.css" for 127.0.0.1 at 2012-02-03 17:10:55 +0100
-Served asset /vertical_megamenu.css - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/vertical_megamenu.css"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:10:55 +0100
-Served asset /images/select_arrow.gif - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/images/select_arrow.gif"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/images/static/rf_wine_brandy_1786_sRGB.png" for 127.0.0.1 at 2012-02-03 17:10:56 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_brandy_1786_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/images/static/rf_wine_red_1815_sRGB.png" for 127.0.0.1 at 2012-02-03 17:10:56 +0100
-
-ActiveRecord::ConnectionTimeoutError (could not obtain a database connection within 5 seconds.  The max pool size is currently 5; consider increasing it.):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.3ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.6ms)
-
-
-Started GET "/images/static/rf_wine_white_1881_sRGB.png" for 127.0.0.1 at 2012-02-03 17:11:06 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_white_1881_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/images/static/rf_home_titel.jpg" for 127.0.0.1 at 2012-02-03 17:11:14 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_home_titel.jpg"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-[DEPRECATION] `hook` is deprecated
-
-
-Started GET "/" for 127.0.0.1 at 2012-02-03 17:11:14 +0100
-  Processing by HomeController#index as HTML
-  [1m[35mSpree::Preference Load (0.4ms)[0m  SELECT `spree_preferences`.* FROM `spree_preferences` 
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[36mSpree::Property Load (0.4ms)[0m  [1mSELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1[0m
-  [1m[35mSpree::Taxonomy Load (0.5ms)[0m  SELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL
-  [1m[36mSpree::Taxon Load (0.6ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)[0m
-  [1m[35mSpree::Taxon Load (0.7ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`
-Rendered shared/_taxonomies.html.erb (250.8ms)
-Rendered home/index.html.erb within /spree/layouts/spree_application (252.9ms)
-Completed 500 Internal Server Error in 493ms
-
-ActionView::Template::Error (No route matches {}):
-    22:     </li>
-    23:     <% else %>
-    24:     <li class="<%== 'current ' if @taxon && @taxon == taxonomy.root %>">
-    25:       <%= link_to seo_url(taxonomy.root),
-    26:                   :class => 'root' do %>
-    27:         <%= t("shop_by_taxonomy", :taxonomy => taxonomy.name.singularize) %>
-    28:       <% end %>
-  app/views/shared/_taxonomies.html.erb:25:in `block in _app_views_shared__taxonomies_html_erb__1689763674642163053_70298359386140'
-  app/views/shared/_taxonomies.html.erb:16:in `_app_views_shared__taxonomies_html_erb__1689763674642163053_70298359386140'
-  app/views/home/index.html.erb:6:in `block (2 levels) in _app_views_home_index_html_erb___3710259827695060420_70298359284740'
-  app/views/home/index.html.erb:2:in `block in _app_views_home_index_html_erb___3710259827695060420_70298359284740'
-  app/views/home/index.html.erb:1:in `_app_views_home_index_html_erb___3710259827695060420_70298359284740'
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-[DEPRECATION] `hook` is deprecated
-[DEPRECATION] `hook` is deprecated
-
-
-Started GET "/" for 127.0.0.1 at 2012-02-03 17:11:24 +0100
-  Processing by HomeController#index as HTML
-  [1m[36mSpree::Preference Load (0.5ms)[0m  [1mSELECT `spree_preferences`.* FROM `spree_preferences` [0m
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[35mSpree::Property Load (0.5ms)[0m  SELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1
-  [1m[36mSpree::Taxonomy Load (0.6ms)[0m  [1mSELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL[0m
-  [1m[35mSpree::Taxon Load (0.6ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)
-  [1m[36mSpree::Taxon Load (0.7ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`[0m
-Rendered shared/_taxonomies.html.erb (260.9ms)
-Rendered home/index.html.erb within /spree/layouts/spree_application (262.6ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_head.html.erb (5.6ms)
-[1;32mDeface:[0m 1 overrides found for 'spree/shared/_nav_bar'
-[1;32mDeface:[0m 'auth_shared_login_bar' matched 1 times with 'li#search-bar'
-  [1m[35mSpree::Taxon Load (0.5ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IS NULL ORDER BY `lft`
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_search.html.erb (4.9ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_nav_bar.html.erb (11.1ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_store_menu.html.erb (3.4ms)
-  [1m[36mSpree::Tracker Load (0.5ms)[0m  [1mSELECT `spree_trackers`.* FROM `spree_trackers` WHERE `spree_trackers`.`active` = 1 AND `spree_trackers`.`environment` = 'development' LIMIT 1[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_google_analytics.html.erb (12.5ms)
-Completed 200 OK in 632ms (Views: 320.6ms | ActiveRecord: 164.4ms)
-
-
-Started GET "/assets/jquery.hoverIntent.minified" for 127.0.0.1 at 2012-02-03 17:11:34 +0100
-Served asset /jquery.hoverIntent.minified - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/jquery.hoverIntent.minified"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/assets/jquery.dcverticalmegamenu.1.3" for 127.0.0.1 at 2012-02-03 17:11:35 +0100
-Served asset /jquery.dcverticalmegamenu.1.3 - 404 Not Found (13ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/jquery.dcverticalmegamenu.1.3"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/assets/vertical_megamenu.css" for 127.0.0.1 at 2012-02-03 17:11:36 +0100
-Served asset /vertical_megamenu.css - 404 Not Found (14ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/vertical_megamenu.css"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/images/static/rf_wine_white_1881_sRGB.png" for 127.0.0.1 at 2012-02-03 17:11:36 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_white_1881_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/images/static/rf_wine_red_1815_sRGB.png" for 127.0.0.1 at 2012-02-03 17:11:36 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_red_1815_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:11:36 +0100
-
-ActiveRecord::ConnectionTimeoutError (could not obtain a database connection within 5 seconds.  The max pool size is currently 5; consider increasing it.):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (6.6ms)
-
-
-Started GET "/images/static/rf_wine_brandy_1786_sRGB.png" for 127.0.0.1 at 2012-02-03 17:11:47 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_brandy_1786_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
-
-
-Started GET "/images/static/rf_home_titel.jpg" for 127.0.0.1 at 2012-02-03 17:11:48 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_home_titel.jpg"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
-
-
-Started GET "/t/categories" for 127.0.0.1 at 2012-02-03 17:11:48 +0100
-  [1m[35mSpree::Property Load (0.4ms)[0m  SELECT `spree_properties`.* FROM `spree_properties` WHERE `spree_properties`.`name` = 'brand' LIMIT 1
-  Processing by Spree::TaxonsController#show as HTML
-  Parameters: {"id"=>"categories"}
-  [1m[36mSpree::Preference Load (0.4ms)[0m  [1mSELECT `spree_preferences`.* FROM `spree_preferences` [0m
-  [1m[35mSpree::Taxon Load (0.5ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`permalink` = 'categories' LIMIT 1
-  [1m[36mSpree::Taxon Load (0.4ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`id` = 1000 LIMIT 1[0m
-  [1m[35mSpree::Taxon Load (0.6ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` >= 1 AND `spree_taxons`.`rgt` <= 12) ORDER BY `spree_taxons`.`lft`
-[1;32mDeface:[0m 1 overrides found for '/spree/layouts/spree_application'
-[1;32mDeface:[0m 'add_analytics_header' matched 1 times with '[data-hook='inside_head']'
-  [1m[36mSpree::Taxonomy Load (0.5ms)[0m  [1mSELECT `spree_taxonomies`.* FROM `spree_taxonomies` INNER JOIN `spree_taxons` ON `spree_taxons`.`taxonomy_id` = `spree_taxonomies`.`id` AND `spree_taxons`.`parent_id` IS NULL[0m
-  [1m[35mSpree::Taxon Load (0.5ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`taxonomy_id` IN (475199832, 854451430) AND (`spree_taxons`.`parent_id` IS NULL)
-  [1m[36mSpree::Taxon Load (0.7ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IN (20000, 1000) ORDER BY `lft`[0m
-  [1m[35mSpree::Taxon Load (0.4ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) ORDER BY `spree_taxons`.`lft`
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) ORDER BY `spree_taxons`.`lft`[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) ORDER BY `spree_taxons`.`lft`
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) ORDER BY `spree_taxons`.`lft`[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) ORDER BY `spree_taxons`.`lft`
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) ORDER BY `spree_taxons`.`lft`[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_taxonomies.html.erb (61.9ms)
-  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` = 1000
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` = 1000[0m
-  [1m[35mSpree::Taxon Load (0.6ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` = 1000 ORDER BY `lft`
-  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1001 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count [0m
-  [1m[35mSpree::Taxon Load (0.5ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` >= 2 AND `spree_taxons`.`rgt` <= 7) AND (`spree_taxons`.id != 1001) ORDER BY `spree_taxons`.`lft`
-  [1m[36mSpree::Product Load (0.3ms)[0m  [1mSELECT `spree_products`.* FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1001 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4[0m
-  [1m[35mSpree::Product Load (0.5ms)[0m  SELECT `spree_products`.* FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 2000 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4
-  [1m[36mSpree::Product Load (0.7ms)[0m  [1mSELECT `spree_products`.* FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 3000 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 3[0m
-  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 1060500592 AND `spree_assets`.`viewable_type` = 'Spree::Product'
-  [1m[36mSpree::Image Load (0.5ms)[0m  [1mSELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 1060500592 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1[0m
-  [1m[35mSpree::Variant Load (0.5ms)[0m  SELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 1060500592 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1
-  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 187438981 AND `spree_assets`.`viewable_type` = 'Spree::Product'[0m
-  [1m[35mSpree::Image Load (0.4ms)[0m  SELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 187438981 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1
-  [1m[36mSpree::Variant Load (0.4ms)[0m  [1mSELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 187438981 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1[0m
-  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 569012001 AND `spree_assets`.`viewable_type` = 'Spree::Product'
-  [1m[36mSpree::Image Load (0.4ms)[0m  [1mSELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 569012001 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1[0m
-  [1m[35mSpree::Variant Load (0.4ms)[0m  SELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 569012001 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1
-  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 706676762 AND `spree_assets`.`viewable_type` = 'Spree::Product'[0m
-  [1m[35mSpree::Image Load (0.4ms)[0m  SELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 706676762 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1
-  [1m[36mSpree::Variant Load (0.6ms)[0m  [1mSELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 706676762 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_products.html.erb (233.7ms)
-  [1m[35m (0.6ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1002 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count 
-  [1m[36mSpree::Taxon Load (0.5ms)[0m  [1mSELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` >= 8 AND `spree_taxons`.`rgt` <= 9) AND (`spree_taxons`.id != 1002) ORDER BY `spree_taxons`.`lft`[0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1002 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count 
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1002 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count [0m
-  [1m[35mSpree::Product Load (0.7ms)[0m  SELECT `spree_products`.* FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1002 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4
-  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 459084718 AND `spree_assets`.`viewable_type` = 'Spree::Product'[0m
-  [1m[35mSpree::Image Load (0.4ms)[0m  SELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 459084718 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1
-  [1m[36mSpree::Variant Load (0.5ms)[0m  [1mSELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 459084718 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1[0m
-  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 723959550 AND `spree_assets`.`viewable_type` = 'Spree::Product'
-  [1m[36mSpree::Image Load (0.5ms)[0m  [1mSELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 723959550 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1[0m
-  [1m[35mSpree::Variant Load (0.5ms)[0m  SELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 723959550 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_products.html.erb (29.8ms)
-  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1003 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count [0m
-  [1m[35mSpree::Taxon Load (0.4ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE (`spree_taxons`.`lft` >= 10 AND `spree_taxons`.`rgt` <= 11) AND (`spree_taxons`.id != 1003) ORDER BY `spree_taxons`.`lft`
-  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1003 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count [0m
-  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(count_column) FROM (SELECT 1 AS count_column FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1003 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4) subquery_for_count 
-  [1m[36mSpree::Product Load (0.7ms)[0m  [1mSELECT `spree_products`.* FROM `spree_products` INNER JOIN `spree_products_taxons` ON `spree_products`.`id` = `spree_products_taxons`.`product_id` WHERE `spree_products_taxons`.`taxon_id` = 1003 AND `spree_products`.`deleted_at` IS NULL AND (available_on <= '2012-02-03 16:11:49') LIMIT 4[0m
-  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 248786582 AND `spree_assets`.`viewable_type` = 'Spree::Product'
-  [1m[36mSpree::Image Load (0.5ms)[0m  [1mSELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 248786582 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1[0m
-  [1m[35mSpree::Variant Load (0.5ms)[0m  SELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 248786582 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1
-  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 1035865702 AND `spree_assets`.`viewable_type` = 'Spree::Product'[0m
-  [1m[35mSpree::Image Load (0.4ms)[0m  SELECT `spree_assets`.* FROM `spree_assets` WHERE `spree_assets`.`type` IN ('Spree::Image') AND `spree_assets`.`viewable_id` = 1035865702 AND `spree_assets`.`viewable_type` = 'Spree::Product' ORDER BY position LIMIT 1
-  [1m[36mSpree::Variant Load (0.5ms)[0m  [1mSELECT `spree_variants`.* FROM `spree_variants` WHERE `spree_variants`.`product_id` = 1035865702 AND (`spree_variants`.is_master = 1 AND `spree_variants`.deleted_at IS NULL) LIMIT 1[0m
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_products.html.erb (153.7ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/taxons/_taxon.html.erb (477.3ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/taxons/show.html.erb within /spree/layouts/spree_application (574.2ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_head.html.erb (3.3ms)
-[1;32mDeface:[0m 1 overrides found for 'spree/shared/_nav_bar'
-[1;32mDeface:[0m 'auth_shared_login_bar' matched 1 times with 'li#search-bar'
-  [1m[35mSpree::Taxon Load (0.6ms)[0m  SELECT `spree_taxons`.* FROM `spree_taxons` WHERE `spree_taxons`.`parent_id` IS NULL ORDER BY `lft`
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_search.html.erb (143.3ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_nav_bar.html.erb (148.8ms)
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_store_menu.html.erb (2.6ms)
-  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `spree_taxons` WHERE (`spree_taxons`.`lft` <= 1 AND `spree_taxons`.`rgt` >= 12) AND (`spree_taxons`.id != 1000)[0m
-  [1m[35mSpree::Tracker Load (0.3ms)[0m  SELECT `spree_trackers`.* FROM `spree_trackers` WHERE `spree_trackers`.`active` = 1 AND `spree_trackers`.`environment` = 'development' LIMIT 1
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/spree_core-1.0.0.rc3/app/views/spree/shared/_google_analytics.html.erb (8.7ms)
-Completed 200 OK in 967ms (Views: 749.9ms | ActiveRecord: 43.0ms)
-
-
-Started GET "/assets/images/select_arrow.gif?1298351050" for 127.0.0.1 at 2012-02-03 17:11:50 +0100
-Served asset /images/select_arrow.gif - 404 Not Found (135ms)
-
-ActionController::RoutingError (No route matches [GET] "/assets/images/select_arrow.gif"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/images/static/rf_home_titel.jpg" for 127.0.0.1 at 2012-02-03 17:11:58 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_home_titel.jpg"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-
-
-Started GET "/images/static/rf_wine_brandy_1786_sRGB.png" for 127.0.0.1 at 2012-02-03 17:11:58 +0100
-
-ActionController::RoutingError (No route matches [GET] "/images/static/rf_wine_brandy_1786_sRGB.png"):
-  
-
-Rendered /Users/ah/.rvm/gems/ruby-1.9.2-p290@regionsFinestShop-spree_1.0.0.rc3/gems/actionpack-3.1.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
-[2012-02-03 18:15:52] ERROR SignalException: SIGTERM
-	/Users/ah/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/server.rb:90:in `select'
-[2012-02-03 18:15:52] ERROR SignalException: SIGTERM
-	/Users/ah/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/webrick/server.rb:90:in `select'
+Started GET "/" for 127.0.0.1 at Fri Feb 17 17:58:39 +0100 2012
+  [1m[36mSQL (0.4ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (40.8ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TIME ZONE
+  Processing by Frontend::SessionsController#index as HTML
+Called current_user
+Session-value: 
+Authentication called for intertech18
+Connecting - Server: 87.119.200.7, cn=manager, o=intertech.de, deisy.
+Connecting with dn: uid=intertech18,ou=customer,o=intertech.de
+Uid: intertech18
+  [1m[36mSQL (4.5ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (2.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mServer Load (1.6ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Roles: authorized_userdomain_userbackend_adminserver_admin
+Hallo2: /frontend/sessions/new
+Called current_user
+Redirected to http://localhost:3000/frontend/accounts
+Completed 302 Found in 691ms
+
+
+Started GET "/frontend/accounts" for 127.0.0.1 at Fri Feb 17 17:58:40 +0100 2012
+  Processing by Frontend::AccountsController#index as HTML
+Called current_user
+Session-value: 
+Authentication called for intertech18
+Connecting - Server: 87.119.200.7, cn=manager, o=intertech.de, deisy.
+Connecting with dn: uid=intertech18,ou=customer,o=intertech.de
+Uid: intertech18
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mServer Load (0.3ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Roles: authorized_userdomain_userbackend_adminserver_admin
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+Uid: intertech18
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+Called current_user
+Called current_user
+Called current_user
+Rendered frontend/sessions/_session_bar.html.erb (1.6ms)
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+Called current_user
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Rendered frontend/accounts/index.html.erb within layouts/frontend (556.8ms)
+Completed 200 OK in 1153ms (Views: 567.7ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/billing" for 127.0.0.1 at Fri Feb 17 17:58:46 +0100 2012
+  Processing by BillingController#index as HTML
+Called current_user
+Session-value: 
+Authentication called for intertech18
+Connecting - Server: 87.119.200.7, cn=manager, o=intertech.de, deisy.
+Connecting with dn: uid=intertech18,ou=customer,o=intertech.de
+Uid: intertech18
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mServer Load (0.4ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Roles: authorized_userdomain_userbackend_adminserver_admin
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'kunde'
+ 
+[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"kunde"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"kunde"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCustomer Load (1.8ms)[0m  SELECT "kunde".* FROM "kunde" ORDER BY customer_nr
+Rendered billing/_unpaid.html.erb (443.6ms)
+Rendered billing/_purchase_orders_index_for_status.html.erb (2.9ms)
+Rendered brokerage_invoices/_index.html.erb (4.9ms)
+Rendered invoices/_monthly_payment_receipt_form.html.erb (1.7ms)
+Called current_user
+Called current_user
+Called current_user
+Rendered sessions/_session_bar.html.erb (1.5ms)
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Called current_user
+  [1m[35mCACHE (0.0ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+Rendered layouts/_menu.html.erb (747.6ms)
+Rendered billing/index.html.erb within layouts/application (1250.2ms)
+Completed 200 OK in 1636ms (Views: 1258.0ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/invoices/monthly_payment_receipt?utf8=%E2%9C%93&after=01-06-2011&before=17-02-2012&commit=generate+CSV" for 127.0.0.1 at Fri Feb 17 17:59:02 +0100 2012
+  Processing by InvoicesController#monthly_payment_receipt as HTML
+  Parameters: {"commit"=>"generate CSV", "after"=>"01-06-2011", "utf8"=>"✓", "before"=>"17-02-2012"}
+Called current_user
+Session-value: 
+Authentication called for intertech18
+Connecting - Server: 87.119.200.7, cn=manager, o=intertech.de, deisy.
+Connecting with dn: uid=intertech18,ou=customer,o=intertech.de
+Uid: intertech18
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mServer Load (0.5ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Roles: authorized_userdomain_userbackend_adminserver_admin
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+  [1m[35mInvoice Load (2.5ms)[0m  SELECT "faktura_rg".* FROM "faktura_rg" WHERE (paid_at > '01-06-2011' AND paid_at < '17-02-2012')
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"faktura_rg"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mInvoiceItem Load (4.8ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9224) ORDER BY position
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"faktura_pos"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mInvoiceItem Load (4.7ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9391) ORDER BY position
+  [1m[36mInvoiceItem Load (4.8ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9376) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.6ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9461) ORDER BY position
+  [1m[36mInvoiceItem Load (4.5ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9477) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.3ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9460) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9484) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.3ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9549) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9538) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9539) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9551) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9524) ORDER BY position
+  [1m[36mInvoiceItem Load (4.2ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9550) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9530) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9552) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9536) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9540) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9548) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9620) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.4ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9608) ORDER BY position
+  [1m[36mInvoiceItem Load (4.7ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9635) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.1ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9602) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9594) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9593) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9592) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9619) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9603) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9590) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9601) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9606) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9615) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.3ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9616) ORDER BY position
+  [1m[36mInvoiceItem Load (4.2ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9614) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9618) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9598) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (5.4ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9609) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9599) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9621) ORDER BY position
+  [1m[36mInvoiceItem Load (4.3ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9623) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9613) ORDER BY position
+  [1m[36mInvoiceItem Load (4.3ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9612) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9596) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9605) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9604) ORDER BY position
+  [1m[36mInvoiceItem Load (4.3ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9607) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.1ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9600) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9610) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.7ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9597) ORDER BY position
+  [1m[36mInvoiceItem Load (5.2ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9589) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9611) ORDER BY position
+  [1m[36mInvoiceItem Load (4.4ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9595) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9762) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9780) ORDER BY position[0m
+Rendered text template (0.0ms)
+Sent data monthly_payment_receipt.csv (2.8ms)
+Completed 200 OK in 1133ms (Views: 2.5ms | ActiveRecord: 229.7ms)
+
+
+Started GET "/invoices/monthly_payment_receipt?utf8=%E2%9C%93&after=01-06-2011&before=17-02-2012&commit=generate+CSV" for 127.0.0.1 at Fri Feb 17 18:00:33 +0100 2012
+  Processing by InvoicesController#monthly_payment_receipt as HTML
+  Parameters: {"commit"=>"generate CSV", "after"=>"01-06-2011", "utf8"=>"✓", "before"=>"17-02-2012"}
+Called current_user
+Session-value: 
+Authentication called for intertech18
+Connecting - Server: 87.119.200.7, cn=manager, o=intertech.de, deisy.
+Connecting with dn: uid=intertech18,ou=customer,o=intertech.de
+Uid: intertech18
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"server"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mServer Load (0.5ms)[0m  SELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr
+Roles: authorized_userdomain_userbackend_adminserver_admin
+Called current_user
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "server".* FROM "server" WHERE ("server"."server_nr" IN (NULL)) ORDER BY server_nr[0m
+  [1m[35mInvoice Load (1.7ms)[0m  SELECT "faktura_rg".* FROM "faktura_rg" WHERE (paid_at > '01-06-2011' AND paid_at < '17-02-2012')
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"faktura_rg"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mInvoiceItem Load (4.4ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9224) ORDER BY position
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"faktura_pos"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mInvoiceItem Load (4.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9391) ORDER BY position
+  [1m[36mInvoiceItem Load (4.7ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9376) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9461) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9477) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9460) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9484) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9549) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9538) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.1ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9539) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9551) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9524) ORDER BY position
+  [1m[36mInvoiceItem Load (4.6ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9550) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9530) ORDER BY position
+  [1m[36mInvoiceItem Load (4.2ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9552) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9536) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9540) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.1ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9548) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9620) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.5ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9608) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9635) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9602) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9594) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9593) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9592) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9619) ORDER BY position
+  [1m[36mInvoiceItem Load (4.3ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9603) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9590) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9601) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.3ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9606) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9615) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9616) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9614) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.7ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9618) ORDER BY position
+  [1m[36mInvoiceItem Load (5.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9598) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (3.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9609) ORDER BY position
+  [1m[36mInvoiceItem Load (3.9ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9599) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9621) ORDER BY position
+  [1m[36mInvoiceItem Load (4.2ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9623) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9613) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9612) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.3ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9596) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9605) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.2ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9604) ORDER BY position
+  [1m[36mInvoiceItem Load (4.2ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9607) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9600) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9610) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.9ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9597) ORDER BY position
+  [1m[36mInvoiceItem Load (4.3ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9589) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.0ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9611) ORDER BY position
+  [1m[36mInvoiceItem Load (4.0ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9595) ORDER BY position[0m
+  [1m[35mInvoiceItem Load (4.1ms)[0m  SELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9762) ORDER BY position
+  [1m[36mInvoiceItem Load (4.1ms)[0m  [1mSELECT "faktura_pos".* FROM "faktura_pos" WHERE ("faktura_pos".invoice_id = 9780) ORDER BY position[0m
+Rendered text template (0.0ms)
+Sent data monthly_payment_receipt.csv (1.2ms)
+Completed 200 OK in 944ms (Views: 1.0ms | ActiveRecord: 226.9ms)
+Exiting
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/rack-1.2.1/lib/rack/handler/mongrel.rb:38:in `join'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/rack-1.2.1/lib/rack/handler/mongrel.rb:38:in `run'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/rack-1.2.1/lib/rack/server.rb:213:in `start'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/railties-3.0.3/lib/rails/commands/server.rb:65:in `start'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/railties-3.0.3/lib/rails/commands.rb:30
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/railties-3.0.3/lib/rails/commands.rb:27:in `tap'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/railties-3.0.3/lib/rails/commands.rb:27
+	./script/rails:6:in `require'
+	./script/rails:6
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/ruby-debug-ide-0.4.16/lib/ruby-debug-ide.rb:112:in `debug_load'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/ruby-debug-ide-0.4.16/lib/ruby-debug-ide.rb:112:in `debug_program'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/gems/ruby-debug-ide-0.4.16/bin/rdebug-ide:87
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/bin/rdebug-ide:19:in `load'
+	/Users/ah/.rvm/gems/ree-1.8.7-2011.03@irpRails3/bin/rdebug-ide:19
+Uncaught exception: SIGHUP
