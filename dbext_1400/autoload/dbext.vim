@@ -1,11 +1,11 @@
 " dbext.vim - Commn Database Utility
-" Copyright (C) 2002-7, Peter Bagyinszki, David Fishburn
+" Copyright (C) 2002-10, Peter Bagyinszki, David Fishburn
 " ---------------------------------------------------------------
-" Version:       12.00
+" Version:       14.00
 " Maintainer:    David Fishburn <dfishburn dot vim at gmail dot com>
 " Authors:       Peter Bagyinszki <petike1 at dpg dot hu>
 "                David Fishburn <dfishburn dot vim at gmail dot com>
-" Last Modified: 2010 Jul 15
+" Last Modified: 2012 Mar 23
 " Based On:      sqlplus.vim (author: Jamis Buck)
 " Created:       2002-05-24
 " Homepage:      http://vim.sourceforge.net/script.php?script_id=356
@@ -38,7 +38,11 @@ if v:version < 700
     echomsg "dbext: Version 4.00 or higher requires Vim7.  Version 3.50 can stil be used with Vim6."
     finish
 endif
-let g:loaded_dbext_auto = 1200
+let g:loaded_dbext_auto = 1400
+
+" Turn on support for line continuations when creating the script
+let s:cpo_save = &cpo
+set cpo&vim
 
 " call confirm("Loaded dbext autoload", "&Ok")
 " Script variable defaults, these are used internal and are never displayed
@@ -169,6 +173,7 @@ function! s:DB_buildLists()
     call add(s:config_params_mv, 'autoclose')
     call add(s:config_params_mv, 'autoclose_min_lines')
     call add(s:config_params_mv, 'variable_remember')
+    call add(s:config_params_mv, 'filetype')
 
     " Script parameters
     let s:script_params_mv = []
@@ -794,7 +799,7 @@ function! s:DB_getDefault(name)
     " Q - CANNOT be surrounded in quotes
     " , - delimiter between options
     elseif a:name ==# "variable_def"            |return (exists("g:dbext_default_variable_def")?g:dbext_default_variable_def.'':'?WQ,@wq,:wq,$wq')
-    elseif a:name ==# "variable_def_regex"      |return (exists("g:dbext_default_variable_def_regex")?g:dbext_default_variable_def_regex.'':'\(\w\|'."'".'\)\@<!?\(\w\|'."'".'\)\@<!,\zs\(@\|:\|$\)\w\+\>')
+    elseif a:name ==# "variable_def_regex"      |return (exists("g:dbext_default_variable_def_regex")?g:dbext_default_variable_def_regex.'':'\(\w\|'."'".'\)\@<!?\(\w\|'."'".'\)\@<!,\zs\(@\|:\a\|$\)\w\+\>')
     elseif a:name ==# "buffer_lines"            |return (exists("g:dbext_default_buffer_lines")?g:dbext_default_buffer_lines.'':10)
     elseif a:name ==# "use_result_buffer"       |return (exists("g:dbext_default_use_result_buffer")?g:dbext_default_use_result_buffer.'':1)
     elseif a:name ==# "use_sep_result_buffer"   |return (exists("g:dbext_default_use_sep_result_buffer")?g:dbext_default_use_sep_result_buffer.'':0)
@@ -884,6 +889,7 @@ function! s:DB_getDefault(name)
     elseif a:name ==# "PGSQL_cmd_terminator"    |return (exists("g:dbext_default_PGSQL_cmd_terminator")?g:dbext_default_PGSQL_cmd_terminator.'':';')
     elseif a:name ==# "PGSQL_SQL_Top_pat"       |return (exists("g:dbext_default_PGSQL_SQL_Top_pat")?g:dbext_default_PGSQL_SQL_Top_pat.'':'\(.*\)')
     elseif a:name ==# "PGSQL_SQL_Top_sub"       |return (exists("g:dbext_default_PGSQL_SQL_Top_sub")?g:dbext_default_PGSQL_SQL_Top_sub.'':'\1 LIMIT @dbext_topX ')
+    elseif a:name ==# "PGSQL_pgpass"            |return (exists("g:dbext_default_PGSQL_pgpass")?g:dbext_default_PGSQL_pgpass.'':'$HOME/.pgpass')
     elseif a:name ==# "RDB_bin"                 |return (exists("g:dbext_default_RDB_bin")?g:dbext_default_RDB_bin.'':'mc sql$')
     elseif a:name ==# "RDB_cmd_header"          |return (exists("g:dbext_default_RDB_cmd_header")?g:dbext_default_RDB_cmd_header.'':"".
                 \ "set line length 10000\n" .
@@ -1124,6 +1130,10 @@ function! s:DB_resetBufferParameters(use_defaults)
                 \ && retval == -2
         call s:DB_promptForParameters()
     endif
+
+    " if s:DB_get('filetype') == ''
+    "     let s:DB_set('filetype') = &filetype
+    " endif
 
     " call s:DB_validateBufferParameters()
     let retval = s:DB_validateBufferParameters()
@@ -1795,7 +1805,9 @@ function! s:DB_ASA_stripHeaderFooter(result)
     let stripped = substitute( stripped, '\((\)\?\(First\s\+\)\?\d\+ row\_.*', '', '' )
     " Strip off trailing spaces
     " let stripped = substitute( stripped, '\(\<\w\+\>\)\s*', '\1', 'g' )
-    let stripped = substitute( stripped, '\(\<\w\+\>\)\s*\(\n\)', '\1\2', '' )
+    let stripped = substitute( stripped, '\(\<\w\+\>\)\s*\(\n\)', '\1\2', 'g' )
+    " Strip blank lines
+    let stripped = substitute( stripped, '\(\n\)\(\n\)', '', 'g' )
     return stripped
 endfunction 
 
@@ -2870,11 +2882,11 @@ function! s:DB_ORA_execSql(str)
 
     let cmd = dbext_bin .  
                 \ ' ' . dbext#DB_getWType("cmd_options") .
-                \ s:DB_option(' ', s:DB_get("user"), '') .
+                \ s:DB_option(" '", s:DB_get("user"), '') .
                 \ s:DB_option('/', s:DB_get("passwd"), '') .
                 \ s:DB_option('@', s:DB_get("srvname"), '') .
                 \ s:DB_option(' ', s:DB_get("extra"), '') .
-                \ ' @' . s:dbext_tempfile
+                \ '" @' . s:dbext_tempfile
     let result = s:DB_runCmd(cmd, output, "")
 
     return result
@@ -3026,7 +3038,32 @@ function! s:DB_ORA_getDictionaryView() "{{{
 endfunction "}}}
 "}}}
 " PGSQL exec {{{
+function! s:DB_PGSQL_check_pgpass()
+    " All defaults are specified in the DB_getDefault function.
+    " This contains the defaults settings for all database types
+    let filename = dbext#DB_getWType("pgpass")
+
+    if !filereadable(expand(filename))
+        call s:DB_warningMsg( 
+                    \ "dbext:PostgreSQL requires a '".
+                    \ dbext#DB_getWType("pgpass").
+                    \ "' file in order to authenticate.  ".
+                    \ 'This file is missing.  '.
+                    \ "The binary '".
+                    \ dbext#DB_getWType("bin").
+                    \ "' does not accept commandline passwords."
+                    \ )
+        return -1
+    endif
+
+    return
+endfunction
+
 function! s:DB_PGSQL_execSql(str)
+    if s:DB_PGSQL_check_pgpass() == -1 
+        return -1
+    endif
+
     " All defaults are specified in the DB_getDefault function.
     " This contains the defaults settings for all database types
     let terminator = dbext#DB_getWType("cmd_terminator")
@@ -3665,13 +3702,17 @@ endfunction "}}}
 " DBI (Perl) exec {{{
 function! s:DB_DBI_Autoload()
     if !exists("g:loaded_dbext_dbi") 
-        " Load the perl based module (if not already)
-        call dbext_dbi#DBI_load_perl_subs()
+        if has('perl')
+            " Load the perl based module (if not already)
+            call dbext_dbi#DBI_load_perl_subs()
 
-        if !exists("g:loaded_dbext_dbi") 
-            call s:DB_warningMsg( 
-                        \ 'dbext:The DBI interface could not be loaded, ensure autoload/dbext_dbi.vim exists'
-                        \ )
+            if !exists("g:loaded_dbext_dbi") 
+                call s:DB_warningMsg( 
+                            \ 'dbext:The DBI interface could not be loaded, ensure autoload/dbext_dbi.vim exists'
+                            \ )
+            endif
+        else
+            return -1
         endif
     endif
 
@@ -4969,6 +5010,10 @@ function! dbext#DB_execSql(query)
         return -1
     endif
 
+    " Mark the current line to return to
+    let curline     = line(".")
+    let curcol      = virtcol(".")
+
    " Add query to internal history
     call s:DB_historyAdd(query)
     
@@ -4990,13 +5035,25 @@ function! dbext#DB_execSql(query)
     endif
     
     if query != ""
-        return dbext#DB_execFuncTypeWCheck('execSql', query)
+        let rc = dbext#DB_execFuncTypeWCheck('execSql', query)
+
+        " Return to previous location
+        " Accounting for beginning of the line
+        " silent! exe 'norm! '.curline."G\<bar>".(curcol-1).(((curcol-1)> 0)?'l':'')
+        call cursor(curline, curcol)
+
+        return rc
     else
        " If the query was cancelled, close the history 
        " window which was opened when we added the 
        " query above.
         call dbext#DB_windowClose(s:DB_resBufName())
     endif
+
+    " Return to previous location
+    " Accounting for beginning of the line
+    " silent! exe 'norm! '.curline."G\<bar>".(curcol-1).(((curcol-1)> 0)?'l':'')
+    call cursor(curline, curcol)
 
     return -1
 endfunction
@@ -5082,6 +5139,10 @@ function! dbext#DB_execSqlTopX(...)
 endfunction
 
 function! dbext#DB_execRangeSql() range
+    " Mark the current line to return to
+    let curline     = a:lastline
+    let curcol      = 0
+
     if a:firstline != a:lastline
         let saveR = @"
         silent! exec a:firstline.','.a:lastline.'y'
@@ -5091,7 +5152,13 @@ function! dbext#DB_execRangeSql() range
         let query = getline(a:firstline)
     endif
 
-    return dbext#DB_execSql(query)
+    let rc = dbext#DB_execSql(query)
+
+    " Return to previous location
+    " Accounting for beginning of the line
+    call cursor(curline, curcol)
+
+    return rc
 endfunction
 
 function! s:DB_getLoginScript(filename)
@@ -5793,6 +5860,7 @@ function! dbext#DB_auVimLeavePreOld() "{{{
     " Switch back to the current buffer
     silent! exec cur_buf.'buffer'
 endfunction "}}}
+
 function! dbext#DB_auBufDelete(del_buf_nr) "{{{
     " This function will delete any temporary dictionary files that were 
     " created and disconnect any DBI or ODBC connections
@@ -5808,6 +5876,13 @@ function! dbext#DB_auBufDelete(del_buf_nr) "{{{
     if cur_buf == del_buf
         return
     endif
+
+    " Do not let current buffer and syntax highlighting go which may
+    " happen when current value of 'bufhidden' is 'delete', 'wipe' etc.
+    let cur_bufhidden = &bufhidden
+    let cur_syntax    = &syntax
+    let cur_filetype  = &filetype
+    setlocal bufhidden=
 
     let idx = index(s:dbext_buffers_with_dict_files, del_buf)
     
@@ -5834,6 +5909,13 @@ function! dbext#DB_auBufDelete(del_buf_nr) "{{{
 
         " Switch back to the current buffer
         silent! exec cur_buf.'buffer'
+
+        " Switch back value of 'bufhidden' and syntax
+        if !empty(cur_bufhidden)
+            exec "setlocal bufhidden=".cur_bufhidden
+            exec "setlocal syntax=".cur_syntax
+            exec "setlocal filetype=".cur_filetype
+        endif
     endif
 endfunction "}}}
 "}}}
@@ -6523,7 +6605,7 @@ function! s:DB_addToResultBuffer(output, do_clear)
     endif
     " Delete all the lines prior to this run
     if a:do_clear == "clear" 
-        %d
+        %d_
         silent! exec "normal! iConnection: ".conn_props.' at '.strftime("%H:%M")."\<Esc>0"
 
         " We only clear the results buffer at the start of a command
@@ -6592,33 +6674,41 @@ function! dbext#DB_parseQuery(query)
         return a:query
     endif
 
-    if &filetype == "sql"
+    " If the user has not overriden the filetype using DB_setOption 
+    " then use the filetype Vim set
+    let l:filetype = s:DB_get('filetype')
+    if l:filetype == ''
+        call s:DB_set('filetype', &filetype)
+        let l:filetype = &filetype
+    endif
+
+    if matchstr( l:filetype, "sql" ) == "sql"
         " Dont parse the SQL query, since DB_parseHostVariables
         " will pickup the standard host variables for prompting.
         " let query = s:DB_parseSQL(a:query)
         return s:DB_parseHostVariables(a:query)
-    elseif &filetype == "java" || 
-                \ &filetype == "jsp"  || 
-                \ &filetype == "html"  || 
-                \ &filetype == "javascript" 
+    elseif matchstr( l:filetype, "java" ) == "java" || 
+                \ matchstr( l:filetype, "jsp" ) == "jsp"  || 
+                \ matchstr( l:filetype, "html" ) == "html"  || 
+                \ matchstr( l:filetype, "javascript" ) == "javascript" 
         let query = s:DB_parseJava(a:query)
         return s:DB_parseHostVariables(query)
-    elseif &filetype == "jproperties" 
+    elseif matchstr( l:filetype, "jproperties" ) == "jproperties" 
         let query = s:DB_parseJProperties(a:query)
         return s:DB_parseHostVariables(query)
-    elseif &filetype == "perl"
+    elseif matchstr( l:filetype, "perl" ) == "perl"
         " The Perl parser will deal with string concatenation
         let query = s:DB_parsePerl(a:query)
         " Let the SQL parser handle embedded host variables
         return s:DB_parseHostVariables(query)
-    elseif &filetype == "php"
+    elseif matchstr( l:filetype, "php" ) == "php"
         let query = s:DB_parsePHP(a:query)
         return s:DB_parseHostVariables(query)
-    elseif &filetype == "vim"
+    elseif matchstr( l:filetype, "vim" ) == "vim"
         let query = s:DB_parseVim(a:query)
         return s:DB_parseHostVariables(query)
-    elseif &filetype == "vb"    ||
-           \ &filetype == "basic"
+    elseif matchstr( l:filetype, "vb" ) == "vb"    ||
+           \ matchstr( l:filetype, "basic" ) == "basic"
         let query = s:DB_parseVB(a:query)
         return s:DB_parseHostVariables(query)
     else
@@ -6640,6 +6730,11 @@ function! s:DB_searchReplace(str, exp_find_str, exp_get_value, count_matches)
     " Find the string index position of the first match
     let index = match(str, a:exp_find_str)
     while index > -1
+        " DEBUGGING
+        " This is a useful echo statemen to use inside the debug loop 
+        " when using breakadd
+        "     echo index matchstr(str, a:exp_find_str, index) var a:exp_find_str "\n" strpart(str, 0, (index-1))
+
         let count_nbr = count_nbr + 1
         " Retrieve the name of what we found
         " let var = matchstr(str, a:exp_get_value, index)
@@ -6650,107 +6745,118 @@ function! s:DB_searchReplace(str, exp_find_str, exp_get_value, count_matches)
         "   OUT      @variable CHAR(1)
         "   INOUT    @variable CHAR(1)
         "   DECLARE  @variable CHAR(1)
+        "   VARIABLE @variable CHAR(1)  -- CREATE VARIABLE @variable
         " Or part of a string
         "   '@variable'
         " Or part of path
         "   /@variable'
-        " Or part of path
-        "   /@variable'
         " Or a global variable
         "   SET @@variable = ...
+        " Or the definition of a global variable
+        "   CREATE VARIABLE variable ...
         " If so, ignore the match
-        let inout = matchstr(strpart(str, 1, (index-1)), '\(\<\w\+\ze\s*$\|''\ze$\|/\ze$\|@\ze$\)')
+        let inout = matchstr(strpart(str, 0, index), '\(\<\w\+\ze\s*$\|''\ze$\|/\ze$\|@\ze$\)')
 
-        if inout !~? '\(in\|out\|inout\|declare\|set\|''\|/\|@\)'
-            " Check to see if the variable is part of the temporarily
-            " stored list of variables to ignore
-            if has_key(b:dbext_sqlvar_temp_mv, var)
-                " Ingore match and move on
-                let index = match(str, a:exp_find_str, index+strlen(var))
-            else
-                " Prompt for value and continue
-                let index = index + 1
-
-                let response = 2
-                " If enabled, default to using saved variables
-                let use_save_vars = (s:DB_get("use_saved_variables")==1?1:2)
-
-                if has_key(b:dbext_sqlvar_mv, var)
-                    let var_val = b:dbext_sqlvar_mv[var]
-                    let dialog_msg = "There are previously saved variables which can be used ".
-                                \ "in your SQL.  Should these saved variables be used? "
-                    if s:DB_get("use_saved_variables") == 0
-                        let use_save_vars = confirm(dialog_msg,
-                                                \ "&Yes" .
-                                                \ "\n&No"
-                                                \ )
-                        call s:DB_set("use_saved_variables", use_save_vars)
-                    endif
-                endif
-
-                if use_save_vars == 1 && has_key(b:dbext_sqlvar_mv, var)
-                    let var_val = b:dbext_sqlvar_mv[var]
+        if inout !~? '\(in\|out\|inout\|declare\|set\|variable\|''\|/\|@\)'
+            " Check if the variable name is preceeded by a comment character.
+            " If so, ignore and continue.
+            if strpart(str, 0, (index-1)) !~ '\(--\|\/\/\)\s*$'
+                " Check to see if the variable is part of the temporarily
+                " stored list of variables to ignore
+                if has_key(b:dbext_sqlvar_temp_mv, var)
+                    " Ingore match and move on
+                    " let index = match(str, a:exp_find_str, index+strlen(var))
+                    let index = index + strlen(var) + 1
                 else
-                    " Prompt the user using the name of the variable
-                    let dialog_msg = "Enter value for " . var
-                    if a:count_matches == 1
-                        " If there is no name (ie ?), then include the
-                        " count of what was found so the user can
-                        " distinguish between different ?s
-                        let dialog_msg = dialog_msg . " number " . count_nbr
-                    endif
-                    let dialog_msg = dialog_msg . ": "
-                    let var_val = s:DB_getInput( 
-                                \ dialog_msg,
-                                \ '',
-                                \ "dbext_cancel"
-                                \ )
+                    " Prompt for value and continue
+                    " let index = index + 1
+
                     let response = 2
-                    " Ok or Cancel result in an empty string
-                    if var_val == "dbext_cancel" 
-                        let response = 5
-                    elseif var_val == "" 
-                        " If empty, check if they want to leave it empty
-                        " of skip this variable
-                        let response = confirm("Your value is empty!",
-                                                \ "&Skip" .
-                                                \ "\n&Use blank" .
-                                                \ "\nS&top Prompting" .
-                                                \ "\n&Never Prompt" .
-                                                \ "\n&Abort"
-                                                \ )
+                    " If enabled, default to using saved variables
+                    let use_save_vars = (s:DB_get("use_saved_variables")==1?1:2)
+
+                    if has_key(b:dbext_sqlvar_mv, var)
+                        let var_val = b:dbext_sqlvar_mv[var]
+                        let dialog_msg = "There are previously saved variables which can be used ".
+                                    \ "in your SQL.  Should these saved variables be used? "
+                        if s:DB_get("use_saved_variables") == 0
+                            let use_save_vars = confirm(dialog_msg,
+                                                    \ "&Yes" .
+                                                    \ "\n&No"
+                                                    \ )
+                            call s:DB_set("use_saved_variables", use_save_vars)
+                        endif
+                    endif
+
+                    if use_save_vars == 1 && has_key(b:dbext_sqlvar_mv, var)
+                        let var_val = b:dbext_sqlvar_mv[var]
+                    else
+                        " Prompt the user using the name of the variable
+                        let dialog_msg = "Enter value for " . var
+                        if a:count_matches == 1
+                            " If there is no name (ie ?), then include the
+                            " count of what was found so the user can
+                            " distinguish between different ?s
+                            let dialog_msg = dialog_msg . " number " . count_nbr
+                        endif
+                        let dialog_msg = dialog_msg . ": "
+                        let var_val = s:DB_getInput( 
+                                    \ dialog_msg,
+                                    \ '',
+                                    \ "dbext_cancel"
+                                    \ )
+                        let response = 2
+                        " Ok or Cancel result in an empty string
+                        if var_val == "dbext_cancel" 
+                            let response = 5
+                        elseif var_val == "" 
+                            " If empty, check if they want to leave it empty
+                            " of skip this variable
+                            let response = confirm("Your value is empty!",
+                                                    \ "&Skip" .
+                                                    \ "\n&Use blank" .
+                                                    \ "\nS&top Prompting" .
+                                                    \ "\n&Never Prompt" .
+                                                    \ "\n&Abort"
+                                                    \ )
+                        endif
+                    endif
+                    if response == 1
+                        " Skip this match and move on to the next
+                        " let index = match(str, a:exp_find_str, index+strlen(var))
+                        let index = index + strlen(var) + 1
+                    elseif response == 2
+                        " Use blank
+                        " Replace the variable with what was entered
+                        let replace_sub = '\%'.(index+1).'c'.'.\{'.strlen(var).'}'
+                        let str = substitute(str, replace_sub, var_val, '')
+                        " let index = match(str, a:exp_find_str, index+strlen(var_val))
+                        let index = index + strlen(var_val) + 1
+                        if a:count_matches != 1 && s:DB_get('variable_remember') == '1'
+                            " Add this assignment to the list of remembered 
+                            " assignments unless it is question marks as host
+                            " variables.
+                            call dbext#DB_sqlVarAssignment(0, 'set '.var.' = '.var_val)
+                        endif
+                    elseif response == 4
+                        " Never Prompt
+                        call s:DB_set("always_prompt_for_variables", '-1')
+                        break
+                    elseif response == 5
+                        " Abort
+                        " If we are aborting, do not execute the SQL statement
+                        let str = ""
+                        break
+                    else
+                        " Stop Prompting
+                        " Skip all remaining matches
+                        call s:DB_set("stop_prompt_for_variables", 1)
+                        break
                     endif
                 endif
-                if response == 1
-                    " Skip this match and move on to the next
-                    let index = match(str, a:exp_find_str, index+strlen(var))
-                elseif response == 2
-                    " Use blank
-                    " Replace the variable with what was entered
-                    let replace_sub = '\%'.index.'c'.'.\{'.strlen(var).'}'
-                    let str = substitute(str, replace_sub, var_val, '')
-                    let index = match(str, a:exp_find_str, index+strlen(var_val))
-                    if a:count_matches != 1 && s:DB_get('variable_remember') == '1'
-                        " Add this assignment to the list of remembered 
-                        " assignments unless it is question marks as host
-                        " variables.
-                        call dbext#DB_sqlVarAssignment(0, 'set '.var.' = '.var_val)
-                    endif
-                elseif response == 4
-                    " Never Prompt
-                    call s:DB_set("always_prompt_for_variables", '-1')
-                    break
-                elseif response == 5
-                    " Abort
-                    " If we are aborting, do not execute the SQL statement
-                    let str = ""
-                    break
-                else
-                    " Stop Prompting
-                    " Skip all remaining matches
-                    call s:DB_set("stop_prompt_for_variables",1)
-                    break
-                endif
+            else
+                " Move on to next match
+                let index = index + strlen(var) + 1
             endif
         else
             " if inout !~? "'" && s:DB_get('variable_remember') == '1'
@@ -6760,8 +6866,12 @@ function! s:DB_searchReplace(str, exp_find_str, exp_get_value, count_matches)
                 call dbext#DB_sqlVarAssignment(2, 'set '.var.' = '.var)
             endif
             " Skip this match and move on to the next
-            let index = match(str, a:exp_find_str, index+strlen(var))
+            " let index = match(str, a:exp_find_str, index+strlen(var)) + 1
+            let index = index + strlen(var) + 1
         endif
+
+        " Find next match
+        let index = match(str, a:exp_find_str, index)
     endwhile
     return str
 endfunction 
@@ -7528,7 +7638,7 @@ endfunction
 function! s:DB_parseVB(query)
 
     " Join all line continuations by removing the ending "_"
-    let a_query = substitute(a:query, " _[\r\n]\\+\\s*", "","")
+    let a_query = substitute(a:query, " _[\r\n]\\+\\s*", "","g")
 
     " Get the string part of the vb query and remove the beginning
     " and closing quotes
@@ -7578,20 +7688,7 @@ function! s:DB_parseVB(query)
     "  \s*[+&]    - Any space and a plus sign
     "  \s*"       - Any space followed by a double quote
 
-    " Replace all sql vars using existing buffer variables
-    let index = match(query, var_expr_q)
-    while index > -1
-        let var = matchstr(query, var_expr, index)
-        let val = s:DB_sqlvar_get(var)
-        " echo b:dbext_sqlvar_mv
-        if index == 0
-            let query = val.query[index+strlen(var)+2:]
-        else
-            let query = query[0:index-1].val.query[index+strlen(var)+2:]
-        endif
-        let index = match(query, var_expr, index+strlen(var))
-    endwhile
-    " let query = s:DB_searchReplace(query, var_expr, var_expr, 0)
+    let query = s:DB_searchReplace(query, var_expr, var_expr, 0)
 
     "call inputdialog(query)
     return query
@@ -8189,7 +8286,20 @@ function! dbext#DB_connect()
     return 0
 endfunction 
 
-function! dbext#DB_disconnect()
+function! dbext#DB_disconnect(...)
+    let bufnr = bufnr("%")
+
+    if a:0 > 0 && a:1 != ''
+        let bufnr = matchstr(a:1, '\d\+')
+
+        if bufnr == ''
+            call s:DB_warningMsg(
+                        \ "dbext: Input must be a buffer number "
+                        \ )
+            return -1
+        endif
+    endif
+
     " Only valid for DBI and ODBC (perl)
     let driver = s:DB_get('type')
     if (driver !~ '\<DBI\>\|\<ODBC\>') 
@@ -8205,23 +8315,36 @@ function! dbext#DB_disconnect()
         return -1
     endif
 
-    " If AutoCommit is on, there is no need to issue commits
-    " If AutoCommit is on disconnect, otherwise let the
-    " user make the choice since it could intefere
-    " with an already running transaction
-    perl db_get_connection_option('AutoCommit')
-    
-    let is_AutoCommit = g:dbext_dbi_result 
+    if bufnr == bufnr('%')
+        " If AutoCommit is on, there is no need to issue commits
+        " If AutoCommit is on disconnect, otherwise let the
+        " user make the choice since it could intefere
+        " with an already running transaction
+        perl db_get_connection_option('AutoCommit')
+        
+        let is_AutoCommit = g:dbext_dbi_result 
 
-    if is_AutoCommit == 0 
-        if s:DB_get('DBI_commit_on_disconnect') == 1 
-            call dbext#DB_commit()
-        else
-            call dbext#DB_rollback()
+        if is_AutoCommit == 0
+            if s:DB_get('DBI_commit_on_disconnect') == 1 
+                call dbext#DB_commit()
+            else
+                call dbext#DB_rollback()
+            endif
         endif
     endif
 
-    perl db_disconnect()
+    exec "perl db_disconnect( '".bufnr."' )"
+
+    return 0
+endfunction 
+
+function! dbext#DB_disconnectAll()
+    " Ensure the dbext_dbi plugin is loaded
+    if s:DB_DBI_Autoload() == -1
+        return -1
+    endif
+
+    perl db_disconnect_all()
 
     return 0
 endfunction 
@@ -8230,4 +8353,8 @@ endfunction
 call s:DB_buildLists()
 
 call s:DB_resetGlobalParameters()
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
 " vim:fdm=marker:nowrap:ts=4:expandtab:ff=unix:
