@@ -15,6 +15,9 @@ if(version >= 703)
   set undodir=~/.vim/tmp/undo
 endif
 
+" Make Y behave just like C and D:
+noremap Y y$
+
 " General settings
 let mapleader = ","
 let maplocalleader = "-"
@@ -36,6 +39,7 @@ set vb t_vb=
 set cursorline
 "set autochdir " always switch to the current file directory
 set hlsearch
+noremap <LocalLeader>n :nohl <CR>
 "set textwidth=80
 "Remap Arrows to navigate with prepended 'g',
 "so one can navigate through wrapped lines:
