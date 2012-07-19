@@ -175,6 +175,7 @@ map <LocalLeader>- :TlistUpdate <CR>
 let Tlist_Use_Right_Window = 1
 let Tlist_Show_One_File = 1
 let Tlist_Auto_Update = 1
+let Tlist_Sort_Type = "name"
 
 " Folding stuff
 set foldmethod=indent
@@ -203,7 +204,7 @@ let vimrplugin_never_unmake_menu = 1
 " CtrlP:
 map <Leader>, :CtrlP<CR>
 map <Leader>. :CtrlPBuffer<CR>
-map <Leader>- :CtrlPMRUFiles<CR>
+map <Leader>- :CtrlPBufTag<CR>
 let g:ctrlp_match_window_bottom=0
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_last_entered=1
