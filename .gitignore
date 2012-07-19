@@ -3,3 +3,4 @@ vim-ruby-debugger/src/
 vim-ruby-debugger/tmp/*
 syntastic/
 vim-textobj-user/
+vim-ruby-debugger/tmp/**
