@@ -41,6 +41,9 @@ set cursorline
 set hlsearch
 noremap <LocalLeader>n :nohl <CR>
 "set textwidth=80
+"Closest to multiple cursors / multiple editing, is to aply the dot command
+"where you click with the mouse while holding down the ALT-Key.
+noremap <M-LeftMouse> <LeftMouse> :normal . <CR>
 "Remap Arrows to navigate with prepended 'g',
 "so one can navigate through wrapped lines:
 noremap <up> gk
@@ -222,7 +225,7 @@ map <LocalLeader>2  : call DBGRstep()<CR>
 map <LocalLeader>3  : call DBGRnext()<CR>
 map <LocalLeader>4  : call DBGRcont()<CR>                   " continue
 map <LocalLeader>b  : call DBGRsetBreakPoint()<CR>
-map <LocalLeader>c  : call DBGRclearBreakPoint()<CR>
+map <LocalLeader>d  : call DBGRclearBreakPoint()<CR>
 map <LocalLeader>ca : call DBGRclearAllBreakPoints()<CR>
 map <LocalLeader>v/ : DBGRprint
 map <LocalLeader>v  : DBGRprintExpand expand("<cWORD>")<CR> " print value under the cursor

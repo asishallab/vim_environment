@@ -37,3 +37,6 @@
 [submodule "vim-gotosymbol"]
 	path = vim-gotosymbol
 	url = https://github.com/travisjeffery/vim-gotosymbol.git
+[submodule "vim-multiedit"]
+	path = vim-multiedit
+	url = https://github.com/felixr/vim-multiedit.git
