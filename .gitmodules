@@ -1,0 +1,117 @@
+[submodule "bundle/vim-colors-solarized.git"]
+	path = bundle/vim-colors-solarized.git
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/vim-rails.git"]
+	path = bundle/vim-rails.git
+	url = git://github.com/tpope/vim-rails.git
+[submodule "bundle/vim-textobj-user.git"]
+	path = bundle/vim-textobj-user.git
+	url = git://github.com/kana/vim-textobj-user.git
+[submodule "bundle/vim-textobj-rubyblock.git"]
+	path = bundle/vim-textobj-rubyblock.git
+	url = git://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule "bundle/vim-fugitive.git"]
+	path = bundle/vim-fugitive.git
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "bundle/syntastic.git"]
+	path = bundle/syntastic.git
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-gotosymbol.git"]
+	path = bundle/vim-gotosymbol.git
+	url = git://github.com/travisjeffery/vim-gotosymbol.git
+[submodule "bundle/ctrlp.vim.git"]
+	path = bundle/ctrlp.vim.git
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule "bundle/vim-pathogen.git"]
+	path = bundle/vim-pathogen.git
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "bundle/jellybeans.vim.git"]
+	path = bundle/jellybeans.vim.git
+	url = git://github.com/nanotech/jellybeans.vim.git
+[submodule "bundle/vimprj.git"]
+	path = bundle/vimprj.git
+	url = git://github.com/vim-scripts/vimprj.git
+[submodule "bundle/ack.vim.git"]
+	path = bundle/ack.vim.git
+	url = git://github.com/mileszs/ack.vim.git
+[submodule "bundle/indexer.tar.gz.git"]
+	path = bundle/indexer.tar.gz.git
+	url = git://github.com/vim-scripts/indexer.tar.gz.git
+[submodule "bundle/DfrankUtil.git"]
+	path = bundle/DfrankUtil.git
+	url = git://github.com/vim-scripts/DfrankUtil.git
+[submodule "bundle/gundo.vim.git"]
+	path = bundle/gundo.vim.git
+	url = git://github.com/sjl/gundo.vim.git
+[submodule "bundle/vim-endwise.git"]
+	path = bundle/vim-endwise.git
+	url = git://github.com/tpope/vim-endwise.git
+[submodule "bundle/dbext.vim.git"]
+	path = bundle/dbext.vim.git
+	url = git://github.com/vim-scripts/dbext.vim.git
+[submodule "bundle/IndexedSearch.git"]
+	path = bundle/IndexedSearch.git
+	url = git://github.com/vim-scripts/IndexedSearch.git
+[submodule "bundle/VimDebug.git"]
+	path = bundle/VimDebug.git
+	url = git://github.com/vim-scripts/VimDebug.git
+[submodule "bundle/Align.git"]
+	path = bundle/Align.git
+	url = git://github.com/vim-scripts/Align.git
+[submodule "bundle/tabular.git"]
+	path = bundle/tabular.git
+	url = git://github.com/godlygeek/tabular.git
+[submodule "bundle/java_getset.vim.git"]
+	path = bundle/java_getset.vim.git
+	url = git://github.com/vim-scripts/java_getset.vim.git
+[submodule "bundle/javacomplete.git"]
+	path = bundle/javacomplete.git
+	url = git://github.com/vim-scripts/javacomplete.git
+[submodule "bundle/gist-vim.git"]
+	path = bundle/gist-vim.git
+	url = git://github.com/mattn/gist-vim.git
+[submodule "bundle/nerdtree.git"]
+	path = bundle/nerdtree.git
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "bundle/vim-ruby.git"]
+	path = bundle/vim-ruby.git
+	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "bundle/vim-ruby-debugger.git"]
+	path = bundle/vim-ruby-debugger.git
+	url = git://github.com/astashov/vim-ruby-debugger.git
+[submodule "bundle/vim-surround.git"]
+	path = bundle/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/vim-repeat.git"]
+	path = bundle/vim-repeat.git
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "bundle/tcomment_vim.git"]
+	path = bundle/tcomment_vim.git
+	url = git://github.com/tomtom/tcomment_vim.git
+[submodule "bundle/L9.git"]
+	path = bundle/L9.git
+	url = git://github.com/vim-scripts/L9.git
+[submodule "bundle/SQLComplete.vim.git"]
+	path = bundle/SQLComplete.vim.git
+	url = git://github.com/vim-scripts/SQLComplete.vim.git
+[submodule "bundle/beanshell.vim.git"]
+	path = bundle/beanshell.vim.git
+	url = git://github.com/vim-scripts/beanshell.vim.git
+[submodule "bundle/Vim-R-plugin.git"]
+	path = bundle/Vim-R-plugin.git
+	url = git://github.com/vim-scripts/Vim-R-plugin.git
+[submodule "bundle/perl-support.vim.git"]
+	path = bundle/perl-support.vim.git
+	url = git://github.com/vim-scripts/perl-support.vim.git
+[submodule "bundle/jQuery.git"]
+	path = bundle/jQuery.git
+	url = git://github.com/vim-scripts/jQuery.git
+[submodule "bundle/textile.vim.git"]
+	path = bundle/textile.vim.git
+	url = git://github.com/timcharper/textile.vim.git
+[submodule "bundle/LaTeX-Box.git"]
+	path = bundle/LaTeX-Box.git
+	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
+[submodule "bundle/vim-markdown.git"]
+	path = bundle/vim-markdown.git
+	url = git://github.com/tpope/vim-markdown.git

@@ -1,6 +1,3 @@
-vim-ruby-debugger/.gitattributes
-vim-ruby-debugger/src/
-vim-ruby-debugger/tmp/*
-syntastic/
-vim-textobj-user/
-vim-ruby-debugger/tmp/**
+tmp/backup/*
+tmp/swap/*
+tmp/undo/*
