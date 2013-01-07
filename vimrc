@@ -3,8 +3,7 @@ set nocompatible " Vim not vi
 " The following is needed on some linux distros.
 " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 filetype off 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+execute pathogen#infect()
 
 " Backup and Swap-Directories
 set directory=~/.vim/tmp/swap

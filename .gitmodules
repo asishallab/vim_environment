@@ -61,9 +61,6 @@
 [submodule "bundle/tabular.git"]
 	path = bundle/tabular.git
 	url = git://github.com/godlygeek/tabular.git
-[submodule "bundle/java_getset.vim.git"]
-	path = bundle/java_getset.vim.git
-	url = git://github.com/vim-scripts/java_getset.vim.git
 [submodule "bundle/javacomplete.git"]
 	path = bundle/javacomplete.git
 	url = git://github.com/vim-scripts/javacomplete.git
