@@ -112,3 +112,6 @@
 [submodule "bundle/vim-markdown.git"]
 	path = bundle/vim-markdown.git
 	url = git://github.com/tpope/vim-markdown.git
+[submodule "bundle/ultisnips.git"]
+	path = bundle/ultisnips.git
+	url = git://github.com/SirVer/ultisnips.git
