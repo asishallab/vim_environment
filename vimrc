@@ -21,7 +21,8 @@ noremap Y y$
 
 " Use Shift + Cursor-Keys to visually select in insert mode and automatically
 " copy the selection to the clipboard: 
-set guioptions+=a keymodel=startsel,stopsel
+" Uncommented, because it interferes with using the cursor keys in visual mode.
+" set guioptions+=a keymodel=startsel,stopsel
 
 " General settings
 let mapleader = ","
@@ -216,6 +217,7 @@ let vimrplugin_never_unmake_menu = 1
 map <Leader>, :CtrlP<CR>
 map <Leader>. :CtrlPBuffer<CR>
 map <Leader>- :CtrlPBufTag<CR>
+map <Leader># :CtrlPTag<CR>
 let g:ctrlp_match_window_bottom=0
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_last_entered=1
