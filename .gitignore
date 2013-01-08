@@ -2,4 +2,3 @@ tmp/backup/*
 tmp/swap/*
 tmp/undo/*
 */*/doc/tags*
-bundle/*.git
