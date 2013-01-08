@@ -19,6 +19,10 @@ endif
 " Make Y behave just like C and D:
 noremap Y y$
 
+" Use Shift + Cursor-Keys to visually select in insert mode and automatically
+" copy the selection to the clipboard: 
+set guioptions+=a keymodel=startsel,stopsel
+
 " General settings
 let mapleader = ","
 let maplocalleader = "-"
