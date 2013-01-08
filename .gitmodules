@@ -115,3 +115,6 @@
 [submodule "bundle/ultisnips.git"]
 	path = bundle/ultisnips.git
 	url = git://github.com/SirVer/ultisnips.git
+[submodule "bundle/vim-git.git"]
+	path = bundle/vim-git.git
+	url = git://github.com/tpope/vim-git.git
