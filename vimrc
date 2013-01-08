@@ -3,7 +3,9 @@ set nocompatible " Vim not vi
 " The following is needed on some linux distros.
 " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 filetype off 
+runtime bundle/vim-pathogen.git/autoload/pathogen.vim
 execute pathogen#infect()
+execute pathogen#helptags()
 
 " Backup and Swap-Directories
 set directory=~/.vim/tmp/swap
@@ -115,6 +117,8 @@ let g:acp_ignorecaseOption = 1
 let g:acp_behaviorKeywordLength = 1
 let g:acp_completeOption = '.,w,b,u,t,i'
 
+" Ultisnips:
+
 " preview
 let g:PreviewBrowsers="open -a Chromium"
 let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css"
@@ -183,6 +187,7 @@ let Tlist_Sort_Type = "name"
 set foldmethod=indent
 set foldlevelstart=1
 set foldminlines=1
+set foldignore=''
 "hi Folded guibg=red guifg=Red cterm=bold ctermbg=DarkGrey ctermfg=lightblue
 "hi FoldColumn guibg=grey78 gui=Bold guifg=DarkBlue
 "set foldcolumn=2
@@ -212,6 +217,9 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_last_entered=1
 let g:ctrlp_open_new_file = 'r'
 " let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+
+" GotoSymbol:
+nmap <LocalLeader># :GotoSymbol
 
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':

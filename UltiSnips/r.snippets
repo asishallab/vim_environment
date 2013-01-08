@@ -1,0 +1,27 @@
+snippet # "generate comment block"
+# $1
+#
+# Args:
+#   $2: $3
+#
+# Returns:
+#   $4
+endsnippet
+
+snippet [[ "generate closing double square brackets" i
+[[ $1 ]]
+endsnippet
+
+snippet te "Generate a test block"
+# Test ${1:method}
+print("Testing $1(...)")
+res.$1 <- $1( $2 )
+exp.$1 <- $3
+check${4:Equals}( res.$1, exp.$1 ) $0
+endsnippet
+
+snippet f "Function stub"
+$1 <- function( $2 ) {
+  $0
+}
+endsnippet
