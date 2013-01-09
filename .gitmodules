@@ -118,3 +118,6 @@
 [submodule "bundle/vim-git.git"]
 	path = bundle/vim-git.git
 	url = git://github.com/tpope/vim-git.git
+[submodule "bundle/gruvbox.git"]
+	path = bundle/gruvbox.git
+	url = git://github.com/morhetz/gruvbox.git

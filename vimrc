@@ -79,7 +79,7 @@ endif
 " noremap <silent> <expr> f '/'.nr2char(getchar())."/e<CR> <bar> :nohl <CR>"
 " noremap <silent> <expr> F '?'.nr2char(getchar())."?b<CR> <bar> :nohl <CR>"
 
-" Wraping:
+" Wrapping:
 command! -nargs=* Wrap set wrap linebreak nolist
 " set showbreak=…
 
@@ -187,6 +187,8 @@ let Tlist_Use_Right_Window = 1
 let Tlist_Show_One_File = 1
 let Tlist_Auto_Update = 1
 let Tlist_Sort_Type = "name"
+" enable support for R / Splus:
+let tlist_r_settings = 'Splus;r:object/function'
 
 " Folding stuff
 set foldmethod=indent
