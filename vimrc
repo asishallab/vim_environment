@@ -102,6 +102,9 @@ endif
 com Se set spell spelllang=en
 com Sd set spell spelllang=de
 
+" Delete range without moving cursor:
+com! -range D <line1>,<line2>d | norm <C-o>
+
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<c-n>"

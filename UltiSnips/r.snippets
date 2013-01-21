@@ -29,3 +29,31 @@ endsnippet
 snippet p "print"
 print( $1 )
 endsnippet
+
+snippet for "for loop" !b
+for ( $1 in $2 ) {
+  $0
+}
+endsnippet
+
+snippet i "if block" !b
+if ( $1 ) {
+  $0
+}
+endsnippet
+
+snippet e "else block" i
+ else {
+  $0
+}
+endsnippet
+
+snippet ei "else-if block" i
+ else if ( $1 ) {
+  $0
+}
+endsnippet
+
+snippet ? "tertiary operator (if else)" i
+if ( $1 ) $2 else $3
+endsnippet
