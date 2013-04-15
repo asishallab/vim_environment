@@ -121,3 +121,6 @@
 [submodule "bundle/gruvbox.git"]
 	path = bundle/gruvbox.git
 	url = git://github.com/morhetz/gruvbox.git
+[submodule "bundle/vim-latex-live-preview.git"]
+	path = bundle/vim-latex-live-preview.git
+	url = git://github.com/xuhdev/vim-latex-live-preview.git
