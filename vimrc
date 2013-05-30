@@ -7,6 +7,8 @@ runtime bundle/vim-pathogen.git/autoload/pathogen.vim
 execute pathogen#infect()
 execute pathogen#helptags()
 
+let g:solarized_termtrans = 1
+
 " Backup and Swap-Directories
 set directory=~/.vim/tmp/swap
 set backupdir=~/.vim/tmp/backup
@@ -37,10 +39,10 @@ set shiftwidth=2
 set autoindent
 set expandtab
 set number
+" set relativenumber
 filetype plugin indent on 
 " No error-bell nor flash
 set noerrorbells
-set visualbell
 set vb t_vb=
 set cursorline
 "set autochdir " always switch to the current file directory
@@ -67,7 +69,7 @@ if has("mac")
 else
   set gfn=Monospace\ 12
   if !has('gui_running')
-    colorscheme macvim
+    colorscheme default
   else
     colorscheme jellybeans
   endif
@@ -128,7 +130,7 @@ let g:acp_completeOption = '.,w,b,u,t,i'
 " Ultisnips:
 
 " preview
-let g:PreviewBrowsers="open -a Chromium"
+let g:PreviewBrowsers="open"
 let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css"
 
 " Ruby-Rails
