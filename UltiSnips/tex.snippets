@@ -1,3 +1,64 @@
 snippet br "newline" i
 \\\\
 endsnippet
+
+snippet quote "Quote content" i
+\begin{quote}$1\end{quote}$0
+endsnippet
+
+snippet emph "Emphasize text" i
+\\emph{$1}$0
+endsnippet
+
+snippet ital "Italic text" i
+\\textit{$1}$0
+endsnippet
+
+snippet pct "citation in round parenthesis" i
+\\parencite{$1}$0
+endsnippet
+
+snippet lb "label" i
+\\label{$1}$0
+endsnippet
+
+snippet alg "align" !b
+\\begin{align}
+  \\label{eq:$1}
+  $2
+\\end{align}$0
+endsnippet
+
+snippet nn "nonumber" i
+\\nonumber
+endsnippet
+
+snippet fig "figure" !b
+\\begin{figure}[$1]
+\\label{fig:$2}
+  \\centering{
+    \\includegraphics[scale=$3]{$4}
+  }
+  \\caption[$5]{$6}
+\\end{figure}$0
+endsnippet
+
+snippet pr "pagereference" i
+\\pageref{$1}$0
+endsnippet
+
+snippet tbl "table" !b
+\\begin{table}[$1]
+\\begin{center}
+\\caption[$2]{$3}
+\\begin{tabular}{$4}
+\\hline
+$5\\\\
+\\hline \\hline
+$6\\\\
+\\hline
+\\end{tabular}
+\\label{tbl:$7}
+\\end{center}
+\\end{table}$0
+endsnippet

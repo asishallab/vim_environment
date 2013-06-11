@@ -238,6 +238,18 @@ nmap <LocalLeader># :GotoSymbol
 " which requires 'matchit':
 :runtime macros/matchit.vim
 
+" Compile latex (for PhD-Thesis):
+"================================
+function! CompileLatex( ltxFile )
+  call system( 'pdflatex -interaction=nonstopmode ' . a:ltxFile )
+  call system( 'cd ' . fnamemodify( a:ltxFile, ':p:h') . ' && bibtex *.aux' )
+  call system( 'pdflatex -interaction=nonstopmode ' . a:ltxFile )
+  call system( 'pdflatex -interaction=nonstopmode ' . a:ltxFile )
+  call system( 'open ' . fnamemodify( a:ltxFile, ':p:h' ) . '/' . fnamemodify( a:ltxFile, ':r' ) . '.pdf' )
+endfunction
+command! LC call CompileLatex( expand( '%' ) )
+
+
 " VimDebug 
 map <LocalLeader>1  : DBGRstart<CR>
 map <LocalLeader>s/ : DBGRstart
