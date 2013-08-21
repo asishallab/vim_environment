@@ -29,6 +29,8 @@ noremap Y y$
 " General settings
 let mapleader = ","
 let maplocalleader = "-"
+set wildmenu
+set wildmode=full
 set ls=2
 map <Leader><Space> :copen <CR>
 set hidden
