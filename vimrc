@@ -44,8 +44,10 @@ set number
 " set relativenumber
 filetype plugin indent on 
 " No error-bell nor flash
-set noerrorbells
-set vb t_vb=
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
 set cursorline
 "set autochdir " always switch to the current file directory
 set hlsearch
