@@ -100,11 +100,11 @@ autocmd FileType ruby let b:surround_35 = "#{ \r }"
 " Set an pipe cursor in insert mode, and a block cursor otherwise.  Works at
 " least for xterm and rxvt terminals.  Does not work for gnome terminal,
 " konsole, xfce4-terminal.
-if !has('gui_running') && &term =~ "xterm\\|rxvt"
-  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-endif
+" if !has('gui_running') && &term =~ "xterm\\|rxvt"
+"   au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+" endif
 
 " Spellcheck:
 com Se set spell spelllang=en
@@ -224,7 +224,11 @@ let g:tex_flavor='latex'
 " Vim-R-Plugin-2
 let g:hasrmenu = 0
 let vimrplugin_never_unmake_menu = 1
-" let vimrplugin_r_path = "/opt/share/local/development/R/R-2.11.1/bin"
+let vimrplugin_screenplugin = 0
+if( filereadable( "/opt/share/software/packages/R-3.0.1/bin/R" ) )
+  let vimrplugin_r_path = "/opt/share/software/packages/R-3.0.1/bin/R"
+  " let vimrplugin_term_cmd = "tmux new-window '$DR'"
+endif
 
 " CtrlP:
 map <Leader>, :CtrlP<CR>
