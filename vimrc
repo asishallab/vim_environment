@@ -53,7 +53,7 @@ set cursorline
 set hlsearch
 noremap <LocalLeader>n :nohl <CR>
 "Format a paragraph:
-noremap <Leader>q Qap<CR>g;g;
+noremap <Leader>q :normal Qapg;g;<CR>
 "set textwidth=80
 "Closest to multiple cursors / multiple editing, is to aply the dot command
 "where you click with the mouse while holding down the ALT-Key.
