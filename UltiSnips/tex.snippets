@@ -35,11 +35,11 @@ endsnippet
 
 snippet fig "figure" !b
 \\begin{figure}[$1]
+\\centering{
+	\\includegraphics[scale=$3]{$4}
+}
+\\caption[$5]{$6}
 \\label{fig:$2}
-  \\centering{
-    \\includegraphics[scale=$3]{$4}
-  }
-  \\caption[$5]{$6}
 \\end{figure}$0
 endsnippet
 
@@ -61,4 +61,27 @@ $6\\\\
 \\label{tbl:$7}
 \\end{center}
 \\end{table}$0
+endsnippet
+
+snippet btbl "booktabs-table" !b
+\\begin{table}[$1]
+\\begin{center}
+\\caption$2{$3}
+\\vspace{1.725ex}
+\\begin{tabular}{$4}
+\\toprule{}%
+$5\\
+\\midrule{}%
+$6\\
+\\bottomrule{}%
+\\end{tabular}
+\\label{$7}
+\\end{center}
+\\vspace{-3.8ex}
+\\end{table}
+$0
+endsnippet
+
+snippet (r "Reference in parenthesis to table/figure/etc" i
+($1\\ref{$2})$0
 endsnippet
