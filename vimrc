@@ -52,8 +52,12 @@ set cursorline
 "set autochdir " always switch to the current file directory
 set hlsearch
 noremap <LocalLeader>n :nohl <CR>
+
+" Formatting:
+map Q gq
 "Format a paragraph:
-noremap <Leader>q Qap<CR>g;g;
+nnoremap <Leader>q :normal Qipg;g;<CR>
+
 "set textwidth=80
 "Closest to multiple cursors / multiple editing, is to aply the dot command
 "where you click with the mouse while holding down the ALT-Key.
@@ -376,9 +380,6 @@ set incsearch		" do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
