@@ -39,9 +39,9 @@ endsnippet
 
 snippet fig "figure" !b
 \\begin{figure}[$1]
-  \\centering{
-    \\includegraphics[scale=$3]{$4}
-  }
+\\centering{
+	\\includegraphics[scale=$3]{$4}
+}
 \\caption[$5]{$6}
 \\label{fig:$2}
 \\end{figure}$0
@@ -84,4 +84,7 @@ $5\\\\
 \\vspace{-3.8ex}
 $7
 \\end{table}$0
+
+snippet (r "Reference in parenthesis to table/figure/etc" i
+($1\\ref{$2})$0
 endsnippet

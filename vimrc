@@ -57,7 +57,6 @@ noremap <LocalLeader>n :nohl <CR>
 map Q gq
 "Format a paragraph:
 nnoremap <Leader>q :normal Qipg;g;<CR>
-
 "set textwidth=80
 "Closest to multiple cursors / multiple editing, is to aply the dot command
 "where you click with the mouse while holding down the ALT-Key.
