@@ -7,6 +7,9 @@ runtime bundle/vim-pathogen.git/autoload/pathogen.vim
 execute pathogen#infect()
 execute pathogen#helptags()
 
+" Yankstack has to be initialized as early as possible:
+call yankstack#setup()
+
 let g:solarized_termtrans = 1
 
 " Backup and Swap-Directories
