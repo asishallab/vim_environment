@@ -7,9 +7,6 @@ runtime bundle/vim-pathogen.git/autoload/pathogen.vim
 execute pathogen#infect()
 execute pathogen#helptags()
 
-" Yankstack has to be initialized as early as possible:
-call yankstack#setup()
-
 let g:solarized_termtrans = 1
 
 " Backup and Swap-Directories
@@ -20,9 +17,6 @@ if(version >= 703)
   set undofile
   set undodir=~/.vim/tmp/undo
 endif
-
-" Make Y behave just like C and D:
-noremap Y y$
 
 " Use Shift + Cursor-Keys to visually select in insert mode and automatically
 " copy the selection to the clipboard: 
@@ -87,11 +81,13 @@ else
   endif
 endif
 
-" Make t,T,f and F searches exceed line-breaks 
-" noremap <silent> <expr> t '/'.nr2char(getchar())."/e-1<CR> <bar> :nohl <CR>"
-" noremap <silent> <expr> T '?'.nr2char(getchar())."?b+1<CR> <bar> :nohl <CR>"
-" noremap <silent> <expr> f '/'.nr2char(getchar())."/e<CR> <bar> :nohl <CR>"
-" noremap <silent> <expr> F '?'.nr2char(getchar())."?b<CR> <bar> :nohl <CR>"
+" Yankstack has to be initialized as early as possible:
+call yankstack#setup()
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+" Make Y behave just like C and D:
+noremap Y y$
 
 " Wrapping:
 command! -nargs=* Wrap set wrap linebreak nolist
