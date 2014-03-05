@@ -309,6 +309,9 @@ com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>)
 " ------------------------------------------------------------------------------- 
 " autocmd Filetype ruby let g:indexer_ctagsCommandLineOptions='--langmap="ruby:+.rake.builder.rjs" --languages=-javascript'
 " autocmd Filetype java let g:indexer_ctagsCommandLineOptions='--language-force=java'
+"
+" Disable warning, if ctags does not match requirements:
+let g:indexer_disableCtagsWarning=1 
 
 " Vim and Java:
 " http://everything101.sourceforge.net/docs/papers/java_and_vim.html
