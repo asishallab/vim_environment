@@ -226,6 +226,8 @@ let g:tex_flavor='latex'
 " Vim-R-Plugin-2
 let g:hasrmenu = 0
 let vimrplugin_never_unmake_menu = 1
+" I prefer a snippet to convert '_<Tab>' into ' <- ':
+let vimrplugin_assign = 0
 if( filereadable( "/opt/share/software/packages/R-3.0.1/bin/R" ) )
   let vimrplugin_r_path = "/opt/share/software/packages/R-3.0.1/bin/R"
   " let vimrplugin_term_cmd = "tmux new-window '$DR'"
