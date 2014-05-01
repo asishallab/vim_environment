@@ -127,3 +127,6 @@
 [submodule "bundle/vim-yankstack.git"]
 	path = bundle/vim-yankstack.git
 	url = https://github.com/maxbrunsfeld/vim-yankstack.git
+[submodule "bundle/vim-snippets.git"]
+	path = bundle/vim-snippets.git
+	url = https://github.com/honza/vim-snippets.git
