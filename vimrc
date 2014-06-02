@@ -111,6 +111,9 @@ autocmd FileType ruby let b:surround_35 = "#{ \r }"
 " Spellcheck:
 com Se set spell spelllang=en
 com Sd set spell spelllang=de
+" Ctrl-Z in INSERT mode will correct last misspelled word before current
+" cursor position:
+inoremap <C-z> <Esc>[s1z=gi
 
 " Delete range without moving cursor:
 com! -range D <line1>,<line2>d | norm <C-o>
