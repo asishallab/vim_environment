@@ -111,6 +111,9 @@ autocmd FileType ruby let b:surround_35 = "#{ \r }"
 " Spellcheck:
 com Se set spell spelllang=en
 com Sd set spell spelllang=de
+" Ctrl-Z in INSERT mode will correct last misspelled word before current
+" cursor position:
+inoremap <C-z> <Esc>[s1z=gi
 
 " Delete range without moving cursor:
 com! -range D <line1>,<line2>d | norm <C-o>
@@ -250,6 +253,14 @@ nmap <LocalLeader># :GotoSymbol
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':
 :runtime macros/matchit.vim
+" Add function object for R:
+call textobj#user#plugin('f', {
+      \   'code': {
+      \     'pattern': ['^\s*\S\+\s*<-\s*function', '^\s*}'],
+      \     'select-a': 'af',
+      \     'select-i': 'if',
+      \   },
+      \ })
 
 " Compile latex (for PhD-Thesis):
 "================================
