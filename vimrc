@@ -253,6 +253,14 @@ nmap <LocalLeader># :GotoSymbol
 " Enable vim-textobj-rubyblock
 " which requires 'matchit':
 :runtime macros/matchit.vim
+" Add function object for R:
+call textobj#user#plugin('f', {
+      \   'code': {
+      \     'pattern': ['^\s*\S\+\s*<-\s*function', '^\s*}'],
+      \     'select-a': 'af',
+      \     'select-i': 'if',
+      \   },
+      \ })
 
 " Compile latex (for PhD-Thesis):
 "================================
