@@ -133,3 +133,6 @@
 [submodule "bundle/vim-snippets.git"]
 	path = bundle/vim-snippets.git
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/vim-unimpaired.git"]
+	path = bundle/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
