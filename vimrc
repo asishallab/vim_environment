@@ -47,6 +47,8 @@ if has('autocmd')
 endif
 set cursorline
 "set autochdir " always switch to the current file directory
+set ignorecase
+set smartcase
 set hlsearch
 noremap <LocalLeader>n :nohl <CR>
 
@@ -135,10 +137,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " acp - with snipmate and ctags:
 " let g:acp_behaviorSnipmateLength = 1
 let g:acp_ignorecaseOption = 1
-let g:acp_behaviorKeywordLength = 1
+let g:acp_behaviorKeywordLength = 3
 let g:acp_completeOption = '.,w,b,u,t,i'
-
-" Ultisnips:
 
 " preview
 let g:PreviewBrowsers="open"
