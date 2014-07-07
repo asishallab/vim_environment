@@ -49,7 +49,7 @@ set cursorline
 "set autochdir " always switch to the current file directory
 set ignorecase
 set smartcase
-set hlsearch
+" set hlsearch
 noremap <LocalLeader>n :nohl <CR>
 
 " Formatting:
