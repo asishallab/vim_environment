@@ -94,9 +94,6 @@
 [submodule "bundle/beanshell.vim.git"]
 	path = bundle/beanshell.vim.git
 	url = git://github.com/vim-scripts/beanshell.vim.git
-[submodule "bundle/Vim-R-plugin.git"]
-	path = bundle/Vim-R-plugin.git
-	url = https://github.com/vim-scripts/Vim-R-plugin.git
 [submodule "bundle/perl-support.vim.git"]
 	path = bundle/perl-support.vim.git
 	url = git://github.com/vim-scripts/perl-support.vim.git
