@@ -71,8 +71,11 @@ inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
 if has("mac")
   set gfn=Monaco:h13
-  " colorscheme solarized
-  colorscheme jellybeans
+  if !has('gui_running')
+    colorscheme solarized
+  else
+    colorscheme jellybeans
+  endif
   set background=dark
 else
   set gfn=Monospace\ 12
@@ -101,14 +104,11 @@ autocmd FileType eruby let b:surround_61 = "<%= \r %>"
 autocmd FileType eruby let b:surround_35 = "#{ \r }"
 autocmd FileType ruby let b:surround_35 = "#{ \r }"
 
-" Set an pipe cursor in insert mode, and a block cursor otherwise.  Works at
-" least for xterm and rxvt terminals.  Does not work for gnome terminal,
-" konsole, xfce4-terminal.
-" if !has('gui_running') && &term =~ "xterm\\|rxvt"
-"   au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-"   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-"   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-" endif
+" Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
 " Spellcheck:
 com Se set spell spelllang=en
