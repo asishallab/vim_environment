@@ -4,6 +4,7 @@ snippet # "generate comment block"
 #' @param $2
 #'
 #' @return $3
+#' @export
 endsnippet
 
 snippet _ "assign" i
@@ -66,4 +67,8 @@ endsnippet
 
 snippet = "brew - print result of R expression" i
 <%= $1 %>$0
+endsnippet
+
+snippet #p "Roxygen2 Parameter comment" b
+#' @param $0
 endsnippet
