@@ -3,8 +3,8 @@ snippet # "generate comment block"
 #'
 #' @param $2
 #'
-#' @return $3
 #' @export
+#' @return $3
 endsnippet
 
 snippet _ "assign" i
@@ -71,4 +71,28 @@ endsnippet
 
 snippet #p "Roxygen2 Parameter comment" b
 #' @param $0
+endsnippet
+
+snippet inp "Generates a variable called 'input.args' holding the trailing command line arguments passed to an R-script" i
+input.args <- commandArgs(trailingOnly=TRUE)
+endsnippet
+
+snippet m "Print out a message to the user" b
+message("$1")$0
+endsnippet
+
+snippet usa "Print out USAGE of script to the user" b
+message("USAGE: Rscript path/2/$1")$0
+endsnippet
+
+snippet F "FALSE" i
+FALSE$0
+endsnippet
+
+snippet T "TRUE" i
+TRUE$0
+endsnippet
+
+snippet saf "stringsAsFactors = FALSE" i
+stringsAsFactors = FALSE$0
 endsnippet
