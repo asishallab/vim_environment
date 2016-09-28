@@ -235,6 +235,7 @@ if( filereadable( "/opt/share/software/packages/R-3.2.0/bin/R" ) )
   let vimrplugin_r_path = "/opt/share/software/packages/R-3.2.0/bin/R"
   " let vimrplugin_term_cmd = "tmux new-window '$DR'"
 endif
+map <LocalLeader>R :!$DR -e 'require(formatR); tidy_source(source="%", file="%");'<CR>
 
 " CtrlP:
 map <Leader>, :CtrlP<CR>
