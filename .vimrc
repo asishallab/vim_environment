@@ -3,11 +3,36 @@ set nocompatible " Vim not vi
 " The following is needed on some linux distros.
 " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 filetype off 
-runtime bundle/vim-pathogen.git/autoload/pathogen.vim
-execute pathogen#infect()
-execute pathogen#helptags()
 
-let g:solarized_termtrans = 1
+" Vim-Plug
+call plug#begin('~/.vim/plugged')
+Plug 'kien/ctrlp.vim'
+Plug 'sjl/gundo.vim'
+Plug 'hoxnox/indexer.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'jpalardy/vim-slime'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-surround'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vim-scripts/Vim-R-plugin'
+Plug 'derekwyatt/vim-scala'
+" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'vim-scripts/DfrankUtil' | Plug 'vim-scripts/vimprj'
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Add plugins to &runtimepath
+call plug#end()
+
+" Make Y behave just like C and D:
+noremap Y y$
+
+" See :help 'guicursor'
+:set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " Backup and Swap-Directories
 set directory=~/.vim/tmp/swap
@@ -18,18 +43,12 @@ if(version >= 703)
   set undodir=~/.vim/tmp/undo
 endif
 
-" Use Shift + Cursor-Keys to visually select in insert mode and automatically
-" copy the selection to the clipboard: 
-" Uncommented, because it interferes with using the cursor keys in visual mode.
-" set guioptions+=a keymodel=startsel,stopsel
-
 " General settings
-let mapleader = ","
-let maplocalleader = "-"
+let mapleader = "\<space>"
+let maplocalleader = "\\"
 set wildmenu
 set wildmode=full
 set ls=2
-map <Leader><Space> :copen <CR>
 set hidden
 syntax enable
 set tabstop=2
@@ -38,7 +57,7 @@ set shiftwidth=2
 set autoindent
 set expandtab
 set number
-" set relativenumber
+set relativenumber
 filetype plugin indent on 
 " No error-bell nor flash
 set noerrorbells visualbell t_vb=
@@ -49,17 +68,20 @@ set cursorline
 "set autochdir " always switch to the current file directory
 set ignorecase
 set smartcase
-" set hlsearch
-noremap <LocalLeader>n :nohl <CR>
+
+" Toggle NERDTree:
+nnoremap <Leader>n :NERDTreeToggle<CR>
+
+" Close all Buffers except the current one:
+com! -nargs=0 BufOnly :%bd | e#
+
 
 " Formatting:
 map Q gq
 "Format a paragraph:
 nnoremap <Leader>q :normal Qipg;g;<CR>
 "set textwidth=80
-"Closest to multiple cursors / multiple editing, is to aply the dot command
-"where you click with the mouse while holding down the ALT-Key.
-noremap <M-LeftMouse> <LeftMouse> :normal . <CR>
+
 "Remap Arrows to navigate with prepended 'g',
 "so one can navigate through wrapped lines:
 noremap <up> gk
@@ -71,44 +93,35 @@ inoremap <A-j> <esc>g<down>i
 "Colorscheme & Font:
 if has("mac")
   set gfn=Monaco:h13
-  if !has('gui_running')
-    colorscheme solarized
-  else
-    colorscheme jellybeans
-  endif
+  colorscheme jellybeans
   set background=dark
 else
   set gfn=Monospace\ 12
   if !has('gui_running')
-    colorscheme default
+    colorscheme jellybeans
   else
     colorscheme jellybeans
   endif
 endif
 
-" Yankstack has to be initialized as early as possible:
-call yankstack#setup()
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
-
-" Make Y behave just like C and D:
-noremap Y y$
+" Yankstack:
+nmap <Leader>p <Plug>yankstack_substitute_older_paste
+nmap <Leader>P <Plug>yankstack_substitute_newer_paste
 
 " Wrapping:
 command! -nargs=* Wrap set wrap linebreak nolist
 " set showbreak=…
 
-" Surround for eruby:
-autocmd FileType eruby let b:surround_37 = "<% \r %>"
-autocmd FileType eruby let b:surround_61 = "<%= \r %>"
-autocmd FileType eruby let b:surround_35 = "#{ \r }"
-autocmd FileType ruby let b:surround_35 = "#{ \r }"
+" vim-slime
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
 
-" Change cursor shape between insert and normal mode in iTerm2.app
-if $TERM_PROGRAM =~ "iTerm"
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
+" Surround for eruby:
+" autocmd FileType eruby let b:surround_37 = "<% \r %>"
+" autocmd FileType eruby let b:surround_61 = "<%= \r %>"
+" autocmd FileType eruby let b:surround_35 = "#{ \r }"
+" autocmd FileType ruby let b:surround_35 = "#{ \r }"
 
 " Spellcheck:
 com Se set spell spelllang=en
@@ -117,41 +130,13 @@ com Sd set spell spelllang=de
 " cursor position:
 inoremap <C-z> <Esc>[s1z=gi
 
-" Delete range without moving cursor:
-com! -range D <line1>,<line2>d | norm <C-o>
-
-" Supertab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<c-n>"
-" Enable Tag-Completion with Supertab
-" function MyTagContext()
-"   if !empty(&tags)
-"     return "\\<C-x>\\<C-]>"
-"   endif
-"   " no return will result in the evaluation of the next
-"   " configured context
-" endfunction
-" let g:SuperTabCompletionContexts =
-"       \\ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
-
-" acp - with snipmate and ctags:
-" let g:acp_behaviorSnipmateLength = 1
-let g:acp_ignorecaseOption = 1
-let g:acp_behaviorKeywordLength = 3
-let g:acp_completeOption = '.,w,b,u,t,i'
-
-" preview
-let g:PreviewBrowsers="open"
-let g:PreviewCSSPath="/Users/ah/.vim/bundle/greyblake-vim-preview-2df4b44/my.css"
-
-" Ruby-Rails
-if has("mac")
-  let g:ruby_debugger_progname = 'mvim'
-  " let g:ruby_debugger_debug_mode = 1
-  let g:ruby_debugger_builtin_sender = 0
-else
-  let g:ruby_debugger_progname = '/usr/bin/vim'
-endif
+" Format Javascript Code-File:
+autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin\ -s\ 2\ -w\ 80
+augroup filetypedetect
+  " associate *.ejs with javascript filetype
+  au BufRead,BufNewFile *.ejs setfiletype javascript
+  au BufRead,BufNewFile *.vue setfiletype javascript
+augroup END
 
 " rails-vim and ctags
 " ctag the RVM-Environment and write those tags into ./tmp/rvm_env_tags
@@ -207,10 +192,10 @@ let Tlist_Sort_Type = "name"
 let tlist_r_settings = 'Splus;r:object/function'
 
 " Folding stuff
-set foldmethod=indent
-set foldlevelstart=1
-set foldminlines=1
-set foldignore=''
+" set foldmethod=indent
+" set foldlevelstart=1
+" set foldminlines=1
+" set foldignore=''
 "hi Folded guibg=red guifg=Red cterm=bold ctermbg=DarkGrey ctermfg=lightblue
 "hi FoldColumn guibg=grey78 gui=Bold guifg=DarkBlue
 "set foldcolumn=2
@@ -222,73 +207,17 @@ set foldignore=''
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
-" Latex-Plugin
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-
-" Vim-R-Plugin-2
-let g:hasrmenu = 0
-let vimrplugin_never_unmake_menu = 1
-" I prefer a snippet to convert '_<Tab>' into ' <- ':
-let vimrplugin_assign = 0
-" if( filereadable( "/opt/share/software/packages/R-3.3.1-debian-9/bin/R" ) )
-"   let vimrplugin_r_path = "/opt/share/software/packages/R-3.3.1-debian-9/bin/R"
-"   " let vimrplugin_term_cmd = "tmux new-window '$DR'"
-" endif
-map <LocalLeader>R :!R -e 'require(formatR); tidy_source(source="%", file="%", width.cutoff=70);'<CR>
-
 " CtrlP:
-map <Leader>, :CtrlP<CR>
-map <Leader>. :CtrlPBuffer<CR>
-map <Leader>- :CtrlPBufTag<CR>
-map <Leader># :CtrlPTag<CR>
+map <Leader><space> :CtrlP<CR>
+map <Leader>, :CtrlPBuffer<CR>
+map <Leader>. :CtrlPTag<CR>
+map <Leader>\\ :CtrlPBufTag<CR>
 let g:ctrlp_match_window_bottom=0
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_last_entered=1
 let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
-
-" GotoSymbol:
-nmap <LocalLeader># :GotoSymbol
-
-" Enable vim-textobj-rubyblock
-" which requires 'matchit':
-:runtime macros/matchit.vim
-" Add function object for R:
-call textobj#user#plugin('f', {
-      \   'code': {
-      \     'pattern': ['^\s*\S\+\s*<-\s*function', '^\s*}'],
-      \     'select-a': 'af',
-      \     'select-i': 'if',
-      \   },
-      \ })
-
-" Compile latex (for PhD-Thesis):
-"================================
-function! CompileLatex( ltxFile )
-  call system( 'pdflatex -interaction=nonstopmode ' . a:ltxFile )
-  call system( 'cd ' . fnamemodify( a:ltxFile, ':p:h') . ' && bibtex *.aux' )
-  call system( 'pdflatex -interaction=nonstopmode ' . a:ltxFile )
-  call system( 'pdflatex -interaction=nonstopmode ' . a:ltxFile )
-  call system( 'open ' . fnamemodify( a:ltxFile, ':p:h' ) . '/' . fnamemodify( a:ltxFile, ':r' ) . '.pdf' )
-endfunction
-command! LC call CompileLatex( expand( '%' ) )
-
-
-" VimDebug 
-map <LocalLeader>1  : DBGRstart<CR>
-map <LocalLeader>s/ : DBGRstart
-map <LocalLeader>2  : call DBGRstep()<CR>
-map <LocalLeader>3  : call DBGRnext()<CR>
-map <LocalLeader>4  : call DBGRcont()<CR>                   " continue
-map <LocalLeader>b  : call DBGRsetBreakPoint()<CR>
-map <LocalLeader>d  : call DBGRclearBreakPoint()<CR>
-map <LocalLeader>ca : call DBGRclearAllBreakPoints()<CR>
-map <LocalLeader>v/ : DBGRprint
-map <LocalLeader>v  : DBGRprintExpand expand("<cWORD>")<CR> " print value under the cursor
-map <LocalLeader>/  : DBGRcommand
-map <LocalLeader>5  : call DBGRrestart()<CR>
-map <LocalLeader>6  : call DBGRquit()<CR>
 
 " Define Function Quick-Fix-List-Do:
 fun! QFDo(bang, command) 
@@ -311,7 +240,6 @@ fun! QFDo(bang, command)
      :exe 'argl ' .join(keys(qflist)) 
      :exe 'argdo ' . a:command 
 endfunc 
-
 com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>)
 
 " Indexer enables automatic update of your exuberant-ctags generated
@@ -326,36 +254,6 @@ com! -nargs=1 -bang Qfdo :call QFDo(<bang>0,<q-args>)
 "
 " Disable warning, if ctags does not match requirements:
 let g:indexer_disableCtagsWarning=1 
-
-" Vim and Java:
-" http://everything101.sourceforge.net/docs/papers/java_and_vim.html
-autocmd Filetype java set makeprg=ant\ -f\ build.xml 
-autocmd Filetype java set efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-autocmd Filetype java set include=^#\s*import 
-autocmd Filetype java set includeexpr=substitute(v:fname,'\\.','/','g')
-autocmd Filetype java map gc gdbf
-command Jtags :exe ":! ctags -R --language-force=java -f.tags ./" 
-com! Jscope !find . -iname '*.java' <bar> cscope -q -i - -b
-autocmd FileType java set tags=.tags
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-autocmd Filetype java call Add_java_dirs_to_path()
-
-" Define Function to set path for Java-Development:
-fun! Add_java_dirs_to_path() 
-  ruby << RUBY_CODE
-  require 'open3'
-  require 'set'
-  result = []
-  Open3.popen3("find . -name '*.java'") { |stdin, stdout, stderr| result = stdout.readlines}
-  VIM.set_option((result.map do |src_dir| "path+=#{src_dir.strip.sub(/^\.\//, '').sub(/\/[^\/]+\.java$/, '/')}" end).to_set.to_a.join(','))
-  VIM.evaluate("javacomplete#AddSourcePath('src')") if File.exist?('src') && File.directory?('src')
-  VIM.evaluate("javacomplete#AddSourcePath('test')") if File.exist?('test') && File.directory?('test')
-  Open3.popen3("find . -name '*.jar'") { |stdin, stdout, stderr| result = stdout.readlines}
-  cp = ( result.map do |jar| "#{File.expand_path(jar.strip)}" end )
-  VIM.command("let g:java_classpath='#{cp.join(':')}'")
-  VIM.command("let g:BeanShell_Cmd='java -Xms1024m -Xmx2048m -cp ~/bsh-2.0b4.jar:#{cp.join(':')}:classes bsh.Interpreter'")
-RUBY_CODE
-endfunc
 
 " Enable JQuery-Syntax
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
@@ -391,6 +289,7 @@ set history=1000	" keep 1000 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+set nohlsearch " No highlighting of search terms
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
