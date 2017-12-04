@@ -112,6 +112,9 @@ nmap <Leader>P <Plug>yankstack_substitute_newer_paste
 command! -nargs=* Wrap set wrap linebreak nolist
 " set showbreak=…
 
+" For formatting R-code:
+autocmd Filetype r map <LocalLeader>R :!R -e 'require(formatR); tidy_source(source="%", file="%", width.cutoff=70);'<CR>
+
 " vim-slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
