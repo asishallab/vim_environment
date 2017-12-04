@@ -104,3 +104,13 @@ endsnippet
 snippet c "code roxygen2 comment" i
 \\code{$1}$0
 endsnippet
+
+snippet sn "setNames" i
+setNames( $1, $2 )$0
+endsnippet
+
+snippet l "lapply" i
+lapply( $1, function($2) {
+$3
+})$0
+endsnippet

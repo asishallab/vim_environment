@@ -231,11 +231,11 @@ let g:hasrmenu = 0
 let vimrplugin_never_unmake_menu = 1
 " I prefer a snippet to convert '_<Tab>' into ' <- ':
 let vimrplugin_assign = 0
-if( filereadable( "/opt/share/software/packages/R-3.2.0/bin/R" ) )
-  let vimrplugin_r_path = "/opt/share/software/packages/R-3.2.0/bin/R"
-  " let vimrplugin_term_cmd = "tmux new-window '$DR'"
-endif
-map <LocalLeader>R :!$DR -e 'require(formatR); tidy_source(source="%", file="%");'<CR>
+" if( filereadable( "/opt/share/software/packages/R-3.3.1-debian-9/bin/R" ) )
+"   let vimrplugin_r_path = "/opt/share/software/packages/R-3.3.1-debian-9/bin/R"
+"   " let vimrplugin_term_cmd = "tmux new-window '$DR'"
+" endif
+map <LocalLeader>R :!R -e 'require(formatR); tidy_source(source="%", file="%", width.cutoff=70);'<CR>
 
 " CtrlP:
 map <Leader>, :CtrlP<CR>
